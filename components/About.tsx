@@ -59,8 +59,10 @@ export default function About() {
       className={`px-6 py-24 flex flex-col items-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
     >
       <div className="w-full max-w-5xl flex flex-col gap-12">
-        {/* Encabezado */}
-        <div className="flex flex-col gap-2">
+        {/* Intro + foto (al lado en escritorio, debajo en iPad/móvil) */}
+        <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
+          {/* Encabezado */}
+          <div className="flex flex-col gap-2">
           <span className="text-[#ff8800] text-xs tracking-widest font-mono">
             // sobre mí
           </span>
@@ -100,6 +102,18 @@ export default function About() {
             los presenta. Trabajo con bases de datos relacionales, documentales
             y de grafos, adaptándome siempre a las necesidades del problema.
           </p>
+          </div>
+
+          {/* Foto de perfil */}
+          <div className="shrink-0 mx-auto lg:mx-0">
+            <img
+              src="https://github.com/Alejandrojuarez0105.png"
+              alt="Alejandro Emmanuel Juárez Hernández"
+              width={320}
+              height={320}
+              className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full object-cover border-2 border-[#1e3a5f]"
+            />
+          </div>
         </div>
 
         {/* Stats */}
