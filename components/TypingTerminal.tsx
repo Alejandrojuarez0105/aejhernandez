@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 
 // Colores de sintaxis
 const O = "text-[#ff8800]"; // naranja (palabras clave, símbolos)
@@ -68,12 +68,8 @@ const Cursor = () => (
 export default function TypingTerminal() {
   const [typed, setTyped] = useState(0);
   const [done, setDone] = useState(false);
-  const started = useRef(false);
 
   useEffect(() => {
-    if (started.current) return;
-    started.current = true;
-
     // Accesibilidad: si se prefiere menos movimiento, mostrar todo de golpe
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -130,7 +126,7 @@ export default function TypingTerminal() {
       </div>
 
       {/* Cuerpo: se "escribe" línea por línea */}
-      <div className="p-5 text-sm leading-loose font-mono whitespace-pre-wrap">
+      <div className="p-4 md:p-5 text-[11px] md:text-sm leading-loose font-mono whitespace-pre-wrap">
         {lines.map((line, li) => {
           const lineStart = acc;
           const lineLen = line.reduce((s, [t]) => s + t.length, 0);

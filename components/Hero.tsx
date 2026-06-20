@@ -14,10 +14,10 @@ export default function Hero() {
   return (
     <section
       id="inicio"
-      className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-24 font-mono"
+      className="relative min-h-screen flex flex-col items-center justify-start md:justify-center px-6 pt-24 pb-20 md:pt-28 md:pb-24 font-mono"
     >
       <div
-        className={`w-full max-w-5xl flex flex-col items-center gap-7 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
+        className={`w-full max-w-5xl flex flex-col items-center gap-6 md:gap-7 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
       >
         {/* Badge disponible */}
         <div className="flex items-center gap-2 bg-[#0d1525] border border-[#1e3a5f] rounded-full px-4 py-1.5 text-[#ff8800] text-xs tracking-widest">

@@ -1,9 +1,13 @@
 @import "tailwindcss";
 
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+/* El reset va dentro de @layer base para NO pisar las utilidades de Tailwind
+   (p-*, pt-*, m-*…). Si se deja sin capa, anula todo el padding/margin. */
+@layer base {
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
 }
 
 html {
