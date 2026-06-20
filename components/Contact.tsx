@@ -49,7 +49,7 @@ export default function Contact() {
     <section
       id="contacto"
       ref={ref}
-      className={`min-h-screen bg-[#020d18] px-6 py-24 flex flex-col items-center justify-center transition-opacity duration-700 ${visible ? "opacity-100" : "opacity-0"}`}
+      className={`px-6 py-24 flex flex-col items-center justify-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
     >
       <div className="w-full max-w-5xl flex flex-col gap-12">
         {/* Encabezado */}
@@ -62,7 +62,7 @@ export default function Contact() {
             <br />
             <span className="text-[#ff8800]">juntos</span>
           </h2>
-          <p className="text-[#475569] text-sm leading-relaxed max-w-lg mt-1">
+          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
             Abierto a proyectos freelance, colaboraciones y oportunidades
             laborales. Si tienes una idea o un proyecto en mente, hablemos.
           </p>
@@ -76,7 +76,7 @@ export default function Contact() {
               <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
               <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-              <span className="text-[#475569] text-xs ml-2 tracking-widest">
+              <span className="text-[#94a3b8] text-xs ml-2 tracking-widest">
                 contact.ts
               </span>
             </div>
@@ -130,13 +130,13 @@ export default function Contact() {
               <p>
                 <span className="text-[#ff8800]">{"}"}</span>
               </p>
-              <p className="mt-4 text-[#475569]">
+              <p className="mt-4 text-[#94a3b8]">
                 // ¿tienes un proyecto en mente?
               </p>
               <p>
                 <span className="text-[#ff8800]">sendMessage</span>
                 <span className="text-[#e2f0ff]">(contact)</span>{" "}
-                <span className="text-[#475569]">// no muerde 🚀</span>
+                <span className="text-[#94a3b8]">// estaré encantado de trabajar juntos </span>
               </p>
               <p className="mt-2">
                 <span className="text-[#334155]">$ </span>
@@ -162,7 +162,7 @@ export default function Contact() {
                   <span className="text-[#e2f0ff] text-sm font-bold">
                     {l.handle}
                   </span>
-                  <span className="text-[#475569] text-xs">{l.desc}</span>
+                  <span className="text-[#94a3b8] text-xs">{l.desc}</span>
                 </div>
                 <span className="text-[#1e3a5f] group-hover:text-[#ff8800] transition-colors text-lg">
                   ↗
@@ -182,7 +182,7 @@ export default function Contact() {
                 <span className="text-[#e2f0ff] text-sm font-bold">
                   Copiar al portapapeles
                 </span>
-                <span className="text-[#475569] text-xs">
+                <span className="text-[#94a3b8] text-xs">
                   aejhernandezdev@gmail.com
                 </span>
               </div>
@@ -195,10 +195,10 @@ export default function Contact() {
 
         {/* Footer */}
         <div className="flex flex-col items-center gap-3 pt-8 border-t border-[#1e3a5f]">
-          <p className="text-[#475569] text-xs font-mono tracking-widest">
+          <p className="text-[#94a3b8] text-xs font-mono tracking-widest">
             // construido con Next.js, TypeScript y Tailwind CSS
           </p>
-          <p className="text-[#1e3a5f] text-xs font-mono">
+          <p className="text-[#64748b] text-xs font-mono">
             © 2026 Alejandro Emmanuel Juárez Hernández
           </p>
         </div>

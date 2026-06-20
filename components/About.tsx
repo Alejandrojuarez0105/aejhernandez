@@ -56,7 +56,7 @@ export default function About() {
     <section
       id="sobre-mí"
       ref={ref}
-      className={`min-h-screen bg-[#020d18] px-6 py-24 flex flex-col items-center transition-opacity duration-700 ${visible ? "opacity-100" : "opacity-0"}`}
+      className={`px-6 py-24 flex flex-col items-center transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
     >
       <div className="w-full max-w-5xl flex flex-col gap-12">
         {/* Encabezado */}
@@ -68,7 +68,7 @@ export default function About() {
             Cómo empezó todo
           </h2>
 
-          <p className="text-[#475569] text-sm leading-relaxed max-w-lg mt-2">
+          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-2">
             Desde pequeño me preguntaba cómo era posible que una televisión
             pudiera transmitir imágenes o cómo funcionaban los teléfonos. Todo
             empezó como curiosidad, pero con el tiempo se convirtió en algo más.
@@ -77,7 +77,7 @@ export default function About() {
             los míos propios.
           </p>
 
-          <p className="text-[#475569] text-sm leading-relaxed max-w-lg">
+          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg">
             En 2021 tuve la oportunidad de estudiar un bachillerato orientado a
             programación. En 2022 empecé con lenguajes como C y C++ y me adentré
             de lleno en este mundo, desarrollando proyectos y aprendiendo de
@@ -87,14 +87,14 @@ export default function About() {
             y la seguridad.
           </p>
 
-          <p className="text-[#475569] text-sm leading-relaxed max-w-lg">
+          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg">
             Con el tiempo, fui ampliando mis conocimientos: desde bases de datos
             hasta desarrollo backend y frontend. Hoy disfruto trabajando en todo
             el stack, ya que me permite tener una visión completa y control
             total de lo que construyo.
           </p>
 
-          <p className="text-[#475569] text-sm leading-relaxed max-w-lg">
+          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg">
             Me especializo en diseñar sistemas donde los datos fluyen de forma
             eficiente, desde el modelo de base de datos hasta la interfaz que
             los presenta. Trabajo con bases de datos relacionales, documentales
@@ -112,7 +112,7 @@ export default function About() {
               <p className="text-2xl font-bold text-[#ff8800] font-mono">
                 {num}
               </p>
-              <p className="text-[#475569] text-xs mt-1 tracking-widest">
+              <p className="text-[#94a3b8] text-xs mt-1 tracking-widest">
                 {lbl}
               </p>
             </div>
@@ -142,7 +142,7 @@ export default function About() {
                   <p className="text-[#e2f0ff] text-sm font-bold mt-0.5">
                     {item.title}
                   </p>
-                  <p className="text-[#475569] text-xs leading-relaxed mt-1 max-w-md">
+                  <p className="text-[#94a3b8] text-xs leading-relaxed mt-1 max-w-md">
                     {item.desc}
                   </p>
                 </div>

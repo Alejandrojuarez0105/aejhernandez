@@ -8,10 +8,32 @@
 
 html {
   scroll-behavior: smooth;
+  /* Deja espacio bajo el navbar fijo al saltar a una sección */
+  scroll-padding-top: 5rem;
 }
 
 body {
-  background: #020d18;
+  background-color: #020d18;
+  /* Capas de profundidad: brillo cálido arriba, frío a la derecha y rejilla sutil */
+  background-image:
+    radial-gradient(
+      900px circle at 50% -10%,
+      rgba(255, 136, 0, 0.1),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px circle at 100% 15%,
+      rgba(125, 211, 252, 0.05),
+      transparent 55%
+    ),
+    linear-gradient(rgba(30, 58, 95, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(30, 58, 95, 0.06) 1px, transparent 1px);
+  background-size:
+    100% 100%,
+    100% 100%,
+    44px 44px,
+    44px 44px;
+  background-attachment: fixed;
   color: #e2f0ff;
   font-family: monospace;
   -webkit-font-smoothing: antialiased;
@@ -20,4 +42,15 @@ body {
 ::selection {
   background: #ff8800;
   color: #020d18;
+}
+
+/* Respeta a quien prefiere menos movimiento */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  * {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

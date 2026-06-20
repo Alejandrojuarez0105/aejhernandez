@@ -19,7 +19,7 @@ const stack = [
   {
     category: "Backend",
     icon: "⬡",
-    items: ["Node.js", "Python", "Java", "C#", "C", "C++"],
+    items: ["Node.js", "NestJS", "Python", "Java", "C#", "C", "C++"],
   },
   {
     category: "Bases de datos",
@@ -31,6 +31,7 @@ const stack = [
       "MongoDB",
       "Neo4j",
       "Supabase",
+      "Prisma",
     ],
   },
   {
@@ -68,8 +69,8 @@ export default function Stack() {
     <section
       id="stack"
       ref={ref}
-      className={`min-h-screen bg-[#020d18] px-6 py-24 flex flex-col items-center transition-opacity duration-700 ${
-        visible ? "opacity-100" : "opacity-0"
+      className={`px-6 py-24 flex flex-col items-center transition-all duration-700 ${
+        visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
     >
       <div className="w-full max-w-5xl flex flex-col gap-10">
@@ -81,7 +82,7 @@ export default function Stack() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">
             Stack tecnológico
           </h2>
-          <p className="text-[#475569] text-sm leading-relaxed max-w-lg mt-1 text-center">
+          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
             Herramientas y lenguajes con los que trabajo. Desde el modelo de
             datos hasta la interfaz.
           </p>
@@ -126,7 +127,7 @@ export default function Stack() {
             <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
             <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-            <span className="text-[#475569] text-xs ml-2 tracking-widest">
+            <span className="text-[#94a3b8] text-xs ml-2 tracking-widest">
               stack.config.ts
             </span>
           </div>
@@ -146,9 +147,9 @@ export default function Stack() {
             <p>
               &nbsp;&nbsp;<span className="text-[#7dd3fc]">databases</span>
               <span className="text-[#ff8800]">:</span>{" "}
-              <span className="text-[#e2f0ff]">6</span>
-              <span className="text-[#475569]">
-                , // relacional, documental, grafos
+              <span className="text-[#e2f0ff]">7</span>
+              <span className="text-[#94a3b8]">
+                , // relacional, documental, grafos, ORM
               </span>
             </p>
             <p>
@@ -163,7 +164,7 @@ export default function Stack() {
             </p>
 
             {/* SEPARADOR */}
-            <p className="text-[#475569] mt-4">// detailed stack ↓</p>
+            <p className="text-[#94a3b8] mt-4">// detailed stack ↓</p>
 
             {/* DETALLE */}
             <p>
@@ -195,7 +196,7 @@ export default function Stack() {
             <p>
               &nbsp;&nbsp;&nbsp;&nbsp;items:{" "}
               <span className="text-[#e2f0ff]">
-                [Node.js, Python, Java, C#, C, C++]
+                [Node.js, NestJS, Python, Java, C#, C, C++]
               </span>
             </p>
             <p>&nbsp;&nbsp;{"},"}</p>
@@ -209,7 +210,7 @@ export default function Stack() {
             <p>
               &nbsp;&nbsp;&nbsp;&nbsp;items:{" "}
               <span className="text-[#e2f0ff]">
-                [MySQL, PostgreSQL, SQL Server, MongoDB, Neo4j, Supabase]
+                [MySQL, PostgreSQL, SQL Server, MongoDB, Neo4j, Supabase, Prisma]
               </span>
             </p>
             <p>&nbsp;&nbsp;{"},"}</p>

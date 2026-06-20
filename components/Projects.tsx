@@ -39,7 +39,7 @@ const projects = [
   {
     name: '¿Próximo proyecto?',
     status: 'Próximamente',
-    statusColor: 'text-[#475569] border-[#475569]',
+    statusColor: 'text-[#94a3b8] border-[#475569]',
     role: null,
     desc: 'Siempre hay algo en construcción. Si tienes una idea o un proyecto en mente, hablemos.',
     tags: [],
@@ -66,7 +66,7 @@ export default function Projects() {
     <section
       id="proyectos"
       ref={ref}
-      className={`min-h-screen bg-[#020d18] px-6 py-24 flex flex-col items-center transition-opacity duration-700 ${visible ? 'opacity-100' : 'opacity-0'}`}
+      className={`px-6 py-24 flex flex-col items-center transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}
     >
       <div className="w-full max-w-5xl flex flex-col gap-10">
 
@@ -74,7 +74,7 @@ export default function Projects() {
         <div className="flex flex-col gap-2">
           <span className="text-[#ff8800] text-xs tracking-widest font-mono">// proyectos</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">Proyectos destacados</h2>
-          <p className="text-[#475569] text-sm leading-relaxed max-w-lg mt-1">
+          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
             Desde análisis de sistemas para clientes reales hasta aplicaciones full stack en construcción.
           </p>
         </div>
@@ -107,7 +107,7 @@ export default function Projects() {
                   </div>
                   <h3 className="text-[#e2f0ff] font-bold text-lg mt-1">{p.name}</h3>
                   {p.role && (
-                    <span className="text-[#475569] text-xs font-mono tracking-widest">// {p.role}</span>
+                    <span className="text-[#94a3b8] text-xs font-mono tracking-widest">// {p.role}</span>
                   )}
                 </div>
 
@@ -118,7 +118,7 @@ export default function Projects() {
                       href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#475569] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-3 py-1.5 rounded-lg"
+                      className="text-[#94a3b8] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-3 py-1.5 rounded-lg"
                     >
                       GitHub ↗
                     </a>
@@ -137,7 +137,7 @@ export default function Projects() {
               </div>
 
               {/* Descripción */}
-              <p className="text-[#475569] text-xs leading-relaxed flex-1">{p.desc}</p>
+              <p className="text-[#94a3b8] text-xs leading-relaxed flex-1">{p.desc}</p>
 
               {/* Tags */}
               {p.tags.length > 0 && (
@@ -172,7 +172,7 @@ export default function Projects() {
             href="https://github.com/Alejandrojuarez0105?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-[#475569] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-6 py-3 rounded-xl"
+            className="flex items-center gap-2 text-[#94a3b8] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-6 py-3 rounded-xl"
           >
             Ver todos los repositorios en GitHub ↗
           </a>

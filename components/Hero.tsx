@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import TypingTerminal from "@/components/TypingTerminal";
 
 export default function Hero() {
   const [visible, setVisible] = useState(false);
@@ -11,27 +12,12 @@ export default function Hero() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center bg-[#020d18] px-6 py-24 font-mono">
-      {/* Navbar */}
-      <nav className="absolute top-0 left-0 right-0 flex items-center justify-between px-8 py-5 border-b border-[#1e3a5f]">
-        <span className="text-[#ff8800] text-sm tracking-widest">
-          aehernandez.dev
-        </span>
-        <div className="hidden md:flex gap-6">
-          {["inicio", "sobre mí", "stack", "proyectos", "contacto"].map((s) => (
-            <a
-              key={s}
-              href={`#${s.replace(" ", "-")}`}
-              className="text-[#475569] text-xs tracking-widest hover:text-[#ff8800] transition-colors"
-            >
-              {s}
-            </a>
-          ))}
-        </div>
-      </nav>
-
+    <section
+      id="inicio"
+      className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-28 pb-24 font-mono"
+    >
       <div
-        className={`w-full max-w-5xl flex flex-col items-center gap-7 transition-opacity duration-700 ${visible ? "opacity-100" : "opacity-0"}`}
+        className={`w-full max-w-5xl flex flex-col items-center gap-7 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
       >
         {/* Badge disponible */}
         <div className="flex items-center gap-2 bg-[#0d1525] border border-[#1e3a5f] rounded-full px-4 py-1.5 text-[#ff8800] text-xs tracking-widest">
@@ -50,88 +36,11 @@ export default function Hero() {
           // Full Stack Developer & Database Engineer
         </p>
 
-        {/* Terminal */}
-        <div className="w-full bg-[#060d18] border border-[#1e3a5f] rounded-xl overflow-hidden">
-          <div className="flex items-center gap-2 bg-[#0d1525] border-b border-[#1e3a5f] px-4 py-2.5">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
-            <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-            <span className="text-[#475569] text-xs ml-2 tracking-widest">
-              terminal — aehernandez.dev
-            </span>
-          </div>
-          <div className="p-5 text-sm leading-loose">
-            <p>
-              <span className="text-[#ff8800]">const</span>{" "}
-              <span className="text-[#e2f0ff]"> alejandro</span>
-              <span className="text-[#ff8800]"> = {"{"}</span>
-            </p>
-            <p>
-              &nbsp;&nbsp;<span className="text-[#ff8800]">role</span>
-              <span className="text-[#ff8800]">:</span>
-              <span className="text-[#e2f0ff]">
-                {" "}
-                "Full Stack Developer & DB Engineer"
-              </span>
-              <span className="text-[#ff8800]">,</span>
-            </p>
-            <p>
-              &nbsp;&nbsp;<span className="text-[#ff8800]">frontend</span>
-              <span className="text-[#ff8800]">:</span>
-              <span className="text-[#e2f0ff]">
-                {" "}
-                ["React", "TypeScript", "JavaScript", "Vite", "Tailwind",
-                "HTML", "CSS"]
-              </span>
-              <span className="text-[#ff8800]">,</span>
-            </p>
-            <p>
-              &nbsp;&nbsp;<span className="text-[#ff8800]">backend</span>
-              <span className="text-[#ff8800]">:</span>
-              <span className="text-[#e2f0ff]">
-                {" "}
-                ["Node.js", "Python", "Java", "C#", "C", "C++"]
-              </span>
-              <span className="text-[#ff8800]">,</span>
-            </p>
-            <p>
-              &nbsp;&nbsp;<span className="text-[#ff8800]">databases</span>
-              <span className="text-[#ff8800]">:</span>
-              <span className="text-[#e2f0ff]">
-                {" "}
-                ["MySQL", "PostgreSQL", "SQL Server", "MongoDB", "Neo4j",
-                "Supabase"]
-              </span>
-              <span className="text-[#ff8800]">,</span>
-            </p>
-            <p>
-              &nbsp;&nbsp;<span className="text-[#ff8800]">herramientas</span>
-              <span className="text-[#ff8800]">:</span>
-              <span className="text-[#e2f0ff]">
-                {" "}
-                ["Git", "GitHub", "VS Code", "Postman", "Linux", "Windows",
-                "Markdown", "Visual Studio 2022"]
-              </span>
-              <span className="text-[#ff8800]">,</span>
-            </p>
-            <p>
-              &nbsp;&nbsp;<span className="text-[#ff8800]">available</span>
-              <span className="text-[#ff8800]">:</span>
-              <span className="text-[#ff8800]"> true</span>
-            </p>
-            <p>
-              <span className="text-[#ff8800]">{"}"}</span>
-            </p>
-            <p className="mt-2">
-              <span className="text-[#334155]">$ </span>
-              <span className="text-[#ff8800]">_</span>
-              <span className="inline-block w-2 h-3.5 bg-[#ff8800] ml-0.5 animate-pulse align-middle" />
-            </p>
-          </div>
-        </div>
+        {/* Terminal (se escribe sola) */}
+        <TypingTerminal />
 
         {/* Tagline */}
-        <p className="text-[#475569] text-sm text-center leading-relaxed max-w-md">
+        <p className="text-[#94a3b8] text-sm text-center leading-relaxed max-w-md">
           Construyo soluciones completas: desde la base de datos hasta la
           interfaz.
           <br />
@@ -164,7 +73,7 @@ export default function Hero() {
           ].map(({ num, lbl }) => (
             <div key={lbl} className="text-center">
               <p className="text-xl font-bold text-[#ff8800]">{num}</p>
-              <p className="text-[#475569] text-xs mt-1 tracking-widest">
+              <p className="text-[#94a3b8] text-xs mt-1 tracking-widest">
                 {lbl}
               </p>
             </div>
