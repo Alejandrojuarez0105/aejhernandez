@@ -40,6 +40,47 @@ export const metadata: Metadata = {
   },
 };
 
+// Datos estructurados (JSON-LD) — le dicen a Google que esto es una persona
+// (desarrollador) con sus enlaces, habilidades y formación.
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Alejandro Emmanuel Juárez Hernández",
+  url: "https://aejhernandez.dev",
+  image: "https://avatars.githubusercontent.com/u/144958850?v=4",
+  jobTitle: "Full Stack Developer & Database Engineer",
+  email: "aejhernandezdev@gmail.com",
+  description:
+    "Full Stack Developer & Database Engineer. Construyo soluciones completas: desde la ingeniería de requisitos y el modelado de datos hasta el backend y la interfaz.",
+  sameAs: [
+    "https://github.com/Alejandrojuarez0105",
+    "https://www.linkedin.com/in/alejandro-emmanuel-juarez-hernandez",
+  ],
+  knowsAbout: [
+    "Full Stack Development",
+    "Database Design",
+    "Software Analysis & Design",
+    "React",
+    "TypeScript",
+    "Node.js",
+    "Python",
+    "PostgreSQL",
+    "MongoDB",
+    "Neo4j",
+    "UML",
+  ],
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Santander",
+    addressRegion: "Cantabria",
+    addressCountry: "ES",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Universidad Europea del Atlántico",
+  },
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -48,6 +89,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+        />
         <LanguageProvider>
           <Navbar />
           {children}
