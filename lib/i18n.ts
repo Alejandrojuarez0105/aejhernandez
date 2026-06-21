@@ -12,6 +12,7 @@ export const translations = {
       proyectos: "proyectos",
       contacto: "contacto",
       toggleLabel: "Switch to English",
+      cv: "Descargar CV",
     },
     hero: {
       available: "Disponible para proyectos",
@@ -164,6 +165,7 @@ export const translations = {
       proyectos: "projects",
       contacto: "contact",
       toggleLabel: "Cambiar a español",
+      cv: "Download CV",
     },
     hero: {
       available: "Available for projects",

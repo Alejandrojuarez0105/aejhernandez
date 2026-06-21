@@ -17,6 +17,12 @@ export default function Navbar() {
     { id: "contacto", label: t.nav.contacto },
   ];
 
+  // CV según el idioma activo
+  const cvHref =
+    lang === "es"
+      ? "/cv/CV_Alejandro_Emmanuel_Juarez_Hernandez.pdf"
+      : "/cv/CV_English_Alejandro_Emmanuel_Juarez_Hernandez.pdf";
+
   // Fondo del navbar al hacer scroll
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -84,10 +90,20 @@ export default function Navbar() {
             <span className="text-[#1e3a5f]">/</span>
             <span className={lang === "en" ? "text-[#ff8800]" : ""}>EN</span>
           </button>
+
+          {/* Botón descargar CV */}
+          <a
+            href={cvHref}
+            download
+            aria-label={t.nav.cv}
+            className="flex items-center gap-1.5 text-xs tracking-widest font-mono bg-[#ff8800] text-[#020d18] font-bold rounded-lg px-3 py-1.5 hover:bg-[#ffaa33] transition-colors"
+          >
+            CV ↓
+          </a>
         </div>
 
         {/* Controles móvil */}
-        <div className="md:hidden flex items-center gap-4">
+        <div className="md:hidden flex items-center gap-3">
           {/* Toggle de idioma */}
           <button
             onClick={toggle}
@@ -98,6 +114,16 @@ export default function Navbar() {
             <span className="text-[#1e3a5f]">/</span>
             <span className={lang === "en" ? "text-[#ff8800]" : ""}>EN</span>
           </button>
+
+          {/* Botón descargar CV (siempre visible en móvil) */}
+          <a
+            href={cvHref}
+            download
+            aria-label={t.nav.cv}
+            className="flex items-center gap-1 text-xs tracking-widest font-mono bg-[#ff8800] text-[#020d18] font-bold rounded-lg px-2.5 py-1 hover:bg-[#ffaa33] transition-colors"
+          >
+            CV ↓
+          </a>
 
           {/* Botón menú */}
           <button
