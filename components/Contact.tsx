@@ -1,32 +1,34 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-const links = [
-  {
-    label: "GitHub",
-    handle: "@Alejandrojuarez0105",
-    url: "https://github.com/Alejandrojuarez0105",
-    desc: "Mis repositorios y proyectos",
-  },
-  {
-    label: "LinkedIn",
-    handle: "Alejandro Emmanuel Juárez Hernández",
-    url: "https://www.linkedin.com/in/alejandro-emmanuel-juarez-hernandez",
-    desc: "Mi perfil profesional",
-  },
-  {
-    label: "Email",
-    handle: "aejhernandezdev@gmail.com",
-    url: "https://mail.google.com/mail/?view=cm&fs=1&to=aejhernandezdev@gmail.com&su=Contacto desde tu portfolio",
-    desc: "Escríbeme directamente",
-  },
-];
+import { useLanguage } from "@/lib/language-context";
 
 export default function Contact() {
+  const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
   const [copied, setCopied] = useState(false);
+
+  const links = [
+    {
+      label: t.contact.links[0].label,
+      handle: "@Alejandrojuarez0105",
+      url: "https://github.com/Alejandrojuarez0105",
+      desc: t.contact.links[0].desc,
+    },
+    {
+      label: t.contact.links[1].label,
+      handle: "Alejandro Emmanuel Juárez Hernández",
+      url: "https://www.linkedin.com/in/alejandro-emmanuel-juarez-hernandez",
+      desc: t.contact.links[1].desc,
+    },
+    {
+      label: t.contact.links[2].label,
+      handle: "aejhernandezdev@gmail.com",
+      url: `https://mail.google.com/mail/?view=cm&fs=1&to=aejhernandezdev@gmail.com&su=${encodeURIComponent(t.contact.emailSubject)}`,
+      desc: t.contact.links[2].desc,
+    },
+  ];
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -55,16 +57,15 @@ export default function Contact() {
         {/* Encabezado */}
         <div className="flex flex-col gap-2">
           <span className="text-[#ff8800] text-xs tracking-widest font-mono">
-            // contacto
+            {t.contact.kicker}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">
-            Construyamos algo
+            {t.contact.title1}
             <br />
-            <span className="text-[#ff8800]">juntos</span>
+            <span className="text-[#ff8800]">{t.contact.title2}</span>
           </h2>
           <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
-            Abierto a proyectos freelance, colaboraciones y oportunidades
-            laborales. Si tienes una idea o un proyecto en mente, hablemos.
+            {t.contact.subtitle}
           </p>
         </div>
 
@@ -125,18 +126,18 @@ export default function Contact() {
               <p>
                 &nbsp;&nbsp;<span className="text-[#7dd3fc]">responseTime</span>
                 <span className="text-[#ff8800]">:</span>{" "}
-                <span className="text-[#e2f0ff]">"menos de 48h"</span>
+                <span className="text-[#e2f0ff]">{t.contact.terminal.responseTime}</span>
               </p>
               <p>
                 <span className="text-[#ff8800]">{"}"}</span>
               </p>
               <p className="mt-4 text-[#94a3b8]">
-                // ¿tienes un proyecto en mente?
+                {t.contact.terminal.prompt}
               </p>
               <p>
                 <span className="text-[#ff8800]">sendMessage</span>
                 <span className="text-[#e2f0ff]">(contact)</span>{" "}
-                <span className="text-[#94a3b8]">// estaré encantado de trabajar juntos </span>
+                <span className="text-[#94a3b8]">{t.contact.terminal.availableComment} </span>
               </p>
               <p className="mt-2">
                 <span className="text-[#334155]">$ </span>
@@ -177,17 +178,17 @@ export default function Contact() {
             >
               <div className="flex flex-col gap-1">
                 <span className="text-[#ff8800] text-xs font-mono tracking-widest">
-                  Email rápido
+                  {t.contact.quickLabel}
                 </span>
                 <span className="text-[#e2f0ff] text-sm font-bold">
-                  Copiar al portapapeles
+                  {t.contact.quickTitle}
                 </span>
                 <span className="text-[#94a3b8] text-xs">
                   aejhernandezdev@gmail.com
                 </span>
               </div>
               <span className="text-[#1e3a5f] group-hover:text-[#ff8800] transition-colors text-sm font-mono">
-                {copied ? "✓ copiado" : "copiar"}
+                {copied ? t.contact.copied : t.contact.copy}
               </span>
             </button>
           </div>
@@ -196,10 +197,10 @@ export default function Contact() {
         {/* Footer */}
         <div className="flex flex-col items-center gap-3 pt-8 border-t border-[#1e3a5f]">
           <p className="text-[#94a3b8] text-xs font-mono tracking-widest">
-            // construido con Next.js, TypeScript y Tailwind CSS
+            {t.contact.footerBuilt}
           </p>
           <p className="text-[#64748b] text-xs font-mono">
-            © 2026 Alejandro Emmanuel Juárez Hernández
+            {t.contact.footerCopyright}
           </p>
         </div>
       </div>

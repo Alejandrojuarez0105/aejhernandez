@@ -1,14 +1,12 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
+import { useLanguage } from '@/lib/language-context'
 
-const projects = [
+// Metadatos que no se traducen (nombres de repo, tags, enlaces)
+const projectMeta = [
   {
     name: 'Davidario',
-    status: 'Terminado',
-    statusColor: 'text-[#22c55e] border-[#22c55e]',
-    role: 'Analista de sistemas',
-    desc: 'Generador de fechas de exámenes desarrollado para un cliente real. Incluye modelo del dominio, actores y casos de uso, prototipos, priorización y documentación completa de sesiones en UML y Markdown.',
     tags: ['PlantUML', 'Markdown', 'UML', 'Análisis de requisitos'],
     github: 'https://github.com/Alejandrojuarez0105/Davidario',
     demo: null,
@@ -16,10 +14,6 @@ const projects = [
   },
   {
     name: 'SnackSmasher',
-    status: 'En desarrollo',
-    statusColor: 'text-[#ff8800] border-[#ff8800]',
-    role: 'Full Stack Developer',
-    desc: 'Plataforma web para un restaurante con sistema de reservas de mesas y videojuegos, reseñas de usuarios y gestión de eventos. Backend en C# con SQL Server, frontend en React + TypeScript + Vite.',
     tags: ['React', 'TypeScript', 'Vite', 'C#', 'SQL Server', 'Markdown'],
     github: 'https://github.com/Alejandrojuarez0105/SnackSmasher',
     demo: null,
@@ -27,21 +21,13 @@ const projects = [
   },
   {
     name: 'aehernandez.dev',
-    status: 'En desarrollo',
-    statusColor: 'text-[#ff8800] border-[#ff8800]',
-    role: 'Full Stack Developer',
-    desc: 'Este portfolio. Diseñado y construido desde cero con Next.js, TypeScript y Tailwind CSS. Enfocado en rendimiento, diseño oscuro y experiencia de usuario limpia.',
     tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
     github: 'https://github.com/Alejandrojuarez0105/ajhernandez',
     demo: null,
     highlight: false,
   },
   {
-    name: '¿Próximo proyecto?',
-    status: 'Próximamente',
-    statusColor: 'text-[#94a3b8] border-[#475569]',
-    role: null,
-    desc: 'Siempre hay algo en construcción. Si tienes una idea o un proyecto en mente, hablemos.',
+    name: null,
     tags: [],
     github: null,
     demo: null,
@@ -49,9 +35,30 @@ const projects = [
   },
 ]
 
+const statusColors: Record<string, string> = {
+  done: 'text-[#22c55e] border-[#22c55e]',
+  wip: 'text-[#ff8800] border-[#ff8800]',
+  soon: 'text-[#94a3b8] border-[#475569]',
+}
+
 export default function Projects() {
+  const { t } = useLanguage()
   const ref = useRef<HTMLDivElement>(null)
   const [visible, setVisible] = useState(false)
+
+  // Combina los metadatos con el texto traducido
+  const projects = projectMeta.map((m, i) => {
+    const item = t.projects.items[i]
+    const itemName = "name" in item ? item.name : null
+    return {
+      ...m,
+      name: itemName ?? m.name,
+      role: item.role,
+      desc: item.desc,
+      status: t.projects.statuses[item.status as keyof typeof t.projects.statuses],
+      statusColor: statusColors[item.status],
+    }
+  })
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -72,10 +79,10 @@ export default function Projects() {
 
         {/* Encabezado */}
         <div className="flex flex-col gap-2">
-          <span className="text-[#ff8800] text-xs tracking-widest font-mono">// proyectos</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">Proyectos destacados</h2>
+          <span className="text-[#ff8800] text-xs tracking-widest font-mono">{t.projects.kicker}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">{t.projects.title}</h2>
           <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
-            Desde análisis de sistemas para clientes reales hasta aplicaciones full stack en construcción.
+            {t.projects.subtitle}
           </p>
         </div>
 
@@ -98,7 +105,7 @@ export default function Projects() {
                   <div className="flex items-center gap-2 flex-wrap">
                     {p.highlight && (
                       <span className="text-[10px] bg-[#ff8800] text-[#020d18] font-bold px-2 py-0.5 rounded font-mono tracking-widest">
-                        Destacado
+                        {t.projects.highlight}
                       </span>
                     )}
                     <span className={`text-[10px] border px-2 py-0.5 rounded font-mono tracking-widest ${p.statusColor}`}>
@@ -159,7 +166,7 @@ export default function Projects() {
                   href="#contacto"
                   className="text-[#ff8800] text-xs font-mono tracking-widest hover:underline mt-auto"
                 >
-                  Hablemos →
+                  {t.projects.talk}
                 </a>
               )}
             </div>
@@ -174,7 +181,7 @@ export default function Projects() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 text-[#94a3b8] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-6 py-3 rounded-xl"
           >
-            Ver todos los repositorios en GitHub ↗
+            {t.projects.viewAll}
           </a>
         </div>
 

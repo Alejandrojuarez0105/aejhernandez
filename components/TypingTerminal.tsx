@@ -1,75 +1,90 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useLanguage } from "@/lib/language-context";
 
 // Colores de sintaxis
 const O = "text-[#ff8800]"; // naranja (palabras clave, símbolos)
 const W = "text-[#e2f0ff]"; // claro (valores)
 
-// Cada línea es una lista de tokens [texto, color]
-const lines: [string, string][][] = [
-  [
-    ["const", O],
-    [" alejandro", W],
-    [" = {", O],
-  ],
-  [
-    ["  role:", O],
-    [' "Full Stack Developer & DB Engineer"', W],
-    [",", O],
-  ],
-  [
-    ["  frontend:", O],
-    [' ["React", "TypeScript", "JavaScript", "Vite", "Tailwind", "HTML", "CSS"]', W],
-    [",", O],
-  ],
-  [
-    ["  backend:", O],
-    [' ["Node.js", "NestJS", "Python", "Java", "C#", "C", "C++"]', W],
-    [",", O],
-  ],
-  [
-    ["  databases:", O],
+// Construye las líneas (solo cambia la etiqueta de "herramientas" según el idioma)
+function buildLines(toolsLabel: string): [string, string][][] {
+  return [
     [
-      ' ["MySQL", "PostgreSQL", "SQL Server", "MongoDB", "Neo4j", "Supabase", "Prisma"]',
-      W,
+      ["const", O],
+      [" alejandro", W],
+      [" = {", O],
     ],
-    [",", O],
-  ],
-  [
-    ["  herramientas:", O],
     [
-      ' ["Git", "GitHub", "VS Code", "Postman", "Linux", "Windows", "Markdown", "Visual Studio 2022"]',
-      W,
+      ["  role:", O],
+      [' "Full Stack Developer & DB Engineer"', W],
+      [",", O],
     ],
-    [",", O],
-  ],
-  [
-    ["  available:", O],
-    [" true", O],
-  ],
-  [["}", O]],
-];
-
-// Total de caracteres + 1 por línea (pequeña pausa al saltar de línea)
-const TOTAL = lines.reduce(
-  (sum, line) => sum + line.reduce((s, [t]) => s + t.length, 0) + 1,
-  0,
-);
+    [
+      ["  frontend:", O],
+      [' ["React", "TypeScript", "JavaScript", "Vite", "Tailwind", "HTML", "CSS"]', W],
+      [",", O],
+    ],
+    [
+      ["  backend:", O],
+      [' ["Node.js", "NestJS", "Python", "Java", "C#", "C", "C++"]', W],
+      [",", O],
+    ],
+    [
+      ["  databases:", O],
+      [
+        ' ["MySQL", "PostgreSQL", "SQL Server", "MongoDB", "Neo4j", "Supabase", "Prisma"]',
+        W,
+      ],
+      [",", O],
+    ],
+    [
+      [toolsLabel, O],
+      [
+        ' ["Git", "GitHub", "VS Code", "Postman", "Linux", "Windows", "Markdown", "Visual Studio 2022"]',
+        W,
+      ],
+      [",", O],
+    ],
+    [
+      ["  available:", O],
+      [" true", O],
+    ],
+    [["}", O]],
+  ];
+}
 
 const DURATION = 5000; // duración total objetivo (ms)
 const STEP = 2; // caracteres por tick
-const TICK = (DURATION * STEP) / TOTAL; // ms por tick para cuadrar la duración
 
 const Cursor = () => (
   <span className="inline-block w-2 h-3.5 bg-[#ff8800] ml-0.5 animate-pulse align-middle" />
 );
 
 export default function TypingTerminal() {
+  const { lang, t } = useLanguage();
+
+  const lines = useMemo(() => buildLines(t.typing.tools), [t.typing.tools]);
+
+  // Total de caracteres + 1 por línea (pequeña pausa al saltar de línea)
+  const TOTAL = useMemo(
+    () =>
+      lines.reduce(
+        (sum, line) => sum + line.reduce((s, [text]) => s + text.length, 0) + 1,
+        0,
+      ),
+    [lines],
+  );
+  const TICK = (DURATION * STEP) / TOTAL; // ms por tick para cuadrar la duración
+
   const [typed, setTyped] = useState(0);
   const [done, setDone] = useState(false);
 
   useEffect(() => {
+    // Reinicia la animación al cambiar de idioma
+    setTyped(0);
+    setDone(false);
+
     // Accesibilidad: si se prefiere menos movimiento, mostrar todo de golpe
     const reduce = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
@@ -93,14 +108,14 @@ export default function TypingTerminal() {
     }, TICK);
 
     return () => clearInterval(id);
-  }, []);
+  }, [lang, TOTAL, TICK]);
 
   // Calcula en qué línea va el cursor mientras escribe
   let consumed = 0;
   let caretLine = -1;
   if (!done) {
     for (let i = 0; i < lines.length; i++) {
-      const lineLen = lines[i].reduce((s, [t]) => s + t.length, 0);
+      const lineLen = lines[i].reduce((s, [text]) => s + text.length, 0);
       if (typed <= consumed + lineLen) {
         caretLine = i;
         break;
@@ -129,7 +144,7 @@ export default function TypingTerminal() {
       <div className="p-4 md:p-5 text-[11px] md:text-sm leading-loose font-mono whitespace-pre-wrap">
         {lines.map((line, li) => {
           const lineStart = acc;
-          const lineLen = line.reduce((s, [t]) => s + t.length, 0);
+          const lineLen = line.reduce((s, [text]) => s + text.length, 0);
           const lineRevealed = Math.max(
             0,
             Math.min(typed - lineStart, lineLen),
@@ -141,12 +156,12 @@ export default function TypingTerminal() {
             <div key={li}>
               {/* zero-width space: mantiene la altura de la línea aunque esté vacía */}
               {"​"}
-              {line.map(([t, c], ti) => {
-                const show = Math.max(0, Math.min(rem, t.length));
-                rem -= t.length;
+              {line.map(([text, c], ti) => {
+                const show = Math.max(0, Math.min(rem, text.length));
+                rem -= text.length;
                 return (
                   <span key={ti} className={c}>
-                    {t.slice(0, show)}
+                    {text.slice(0, show)}
                   </span>
                 );
               })}

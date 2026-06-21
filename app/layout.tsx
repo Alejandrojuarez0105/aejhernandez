@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import { LanguageProvider } from "@/lib/language-context";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://aejhernandez.vercel.app"),
@@ -28,6 +29,12 @@ export const metadata: Metadata = {
     locale: "es_ES",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Alejandro Emmanuel Juárez Hernández — Full Stack Developer",
+    description:
+      "Full Stack Developer & Database Engineer. Backend, frontend y bases de datos.",
+  },
 };
 
 export default function RootLayout({
@@ -38,8 +45,10 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body>
-        <Navbar />
-        {children}
+        <LanguageProvider>
+          <Navbar />
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );

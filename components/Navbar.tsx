@@ -1,19 +1,21 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
-const sections = [
-  { id: "inicio", label: "inicio" },
-  { id: "sobre-mí", label: "sobre mí" },
-  { id: "stack", label: "stack" },
-  { id: "proyectos", label: "proyectos" },
-  { id: "contacto", label: "contacto" },
-];
+import { useLanguage } from "@/lib/language-context";
 
 export default function Navbar() {
+  const { lang, toggle, t } = useLanguage();
   const [active, setActive] = useState("inicio");
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+
+  const sections = [
+    { id: "inicio", label: t.nav.inicio },
+    { id: "sobre-mí", label: t.nav.sobreMi },
+    { id: "stack", label: t.nav.stack },
+    { id: "proyectos", label: t.nav.proyectos },
+    { id: "contacto", label: t.nav.contacto },
+  ];
 
   // Fondo del navbar al hacer scroll
   useEffect(() => {
@@ -53,11 +55,11 @@ export default function Navbar() {
           href="#inicio"
           className="text-[#ff8800] text-sm tracking-widest hover:opacity-80 transition-opacity"
         >
-          aehernandez.dev
+          aejhernandez.dev
         </a>
 
         {/* Links escritorio */}
-        <div className="hidden md:flex gap-6">
+        <div className="hidden md:flex items-center gap-6">
           {sections.map(({ id, label }) => (
             <a
               key={id}
@@ -71,15 +73,39 @@ export default function Navbar() {
               {label}
             </a>
           ))}
+
+          {/* Toggle de idioma */}
+          <button
+            onClick={toggle}
+            aria-label={t.nav.toggleLabel}
+            className="flex items-center gap-1 text-xs tracking-widest font-mono text-[#94a3b8] border border-[#1e3a5f] rounded-lg px-2.5 py-1 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
+          >
+            <span className={lang === "es" ? "text-[#ff8800]" : ""}>ES</span>
+            <span className="text-[#1e3a5f]">/</span>
+            <span className={lang === "en" ? "text-[#ff8800]" : ""}>EN</span>
+          </button>
         </div>
 
-        {/* Botón móvil */}
-        <button
-          onClick={() => setOpen((v) => !v)}
-          className="md:hidden flex flex-col gap-1.5 p-1"
-          aria-label={open ? "Cerrar menú" : "Abrir menú"}
-          aria-expanded={open}
-        >
+        {/* Controles móvil */}
+        <div className="md:hidden flex items-center gap-4">
+          {/* Toggle de idioma */}
+          <button
+            onClick={toggle}
+            aria-label={t.nav.toggleLabel}
+            className="flex items-center gap-1 text-xs tracking-widest font-mono text-[#94a3b8] border border-[#1e3a5f] rounded-lg px-2.5 py-1 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
+          >
+            <span className={lang === "es" ? "text-[#ff8800]" : ""}>ES</span>
+            <span className="text-[#1e3a5f]">/</span>
+            <span className={lang === "en" ? "text-[#ff8800]" : ""}>EN</span>
+          </button>
+
+          {/* Botón menú */}
+          <button
+            onClick={() => setOpen((v) => !v)}
+            className="flex flex-col gap-1.5 p-1"
+            aria-label={open ? "Cerrar menú" : "Abrir menú"}
+            aria-expanded={open}
+          >
           <span
             className={`block h-px w-6 bg-[#ff8800] transition-transform duration-300 ${
               open ? "translate-y-[7px] rotate-45" : ""
@@ -95,7 +121,8 @@ export default function Navbar() {
               open ? "-translate-y-[7px] -rotate-45" : ""
             }`}
           />
-        </button>
+          </button>
+        </div>
       </nav>
 
       {/* Menú móvil */}

@@ -1,56 +1,59 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-
-const stack = [
-  {
-    category: "Frontend",
-    icon: "▢",
-    items: [
-      "React",
-      "TypeScript",
-      "JavaScript",
-      "Vite",
-      "Tailwind CSS",
-      "HTML",
-      "CSS",
-    ],
-  },
-  {
-    category: "Backend",
-    icon: "⬡",
-    items: ["Node.js", "NestJS", "Python", "Java", "C#", "C", "C++"],
-  },
-  {
-    category: "Bases de datos",
-    icon: "◈",
-    items: [
-      "MySQL",
-      "PostgreSQL",
-      "SQL Server",
-      "MongoDB",
-      "Neo4j",
-      "Supabase",
-      "Prisma",
-    ],
-  },
-  {
-    category: "Herramientas",
-    icon: "◎",
-    items: [
-      "Git",
-      "GitHub",
-      "VS Code",
-      "Postman",
-      "Linux",
-      "Windows",
-      "Markdown",
-      "Visual Studio 2022",
-    ],
-  },
-];
+import { useLanguage } from "@/lib/language-context";
 
 export default function Stack() {
+  const { t } = useLanguage();
+
+  const stack = [
+    {
+      category: t.stack.categories.frontend,
+      icon: "▢",
+      items: [
+        "React",
+        "TypeScript",
+        "JavaScript",
+        "Vite",
+        "Tailwind CSS",
+        "HTML",
+        "CSS",
+      ],
+    },
+    {
+      category: t.stack.categories.backend,
+      icon: "⬡",
+      items: ["Node.js", "NestJS", "Python", "Java", "C#", "C", "C++"],
+    },
+    {
+      category: t.stack.categories.databases,
+      icon: "◈",
+      items: [
+        "MySQL",
+        "PostgreSQL",
+        "SQL Server",
+        "MongoDB",
+        "Neo4j",
+        "Supabase",
+        "Prisma",
+      ],
+    },
+    {
+      category: t.stack.categories.tools,
+      icon: "◎",
+      items: [
+        "Git",
+        "GitHub",
+        "VS Code",
+        "Postman",
+        "Linux",
+        "Windows",
+        "Markdown",
+        "Visual Studio 2022",
+      ],
+    },
+  ];
+
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -77,14 +80,13 @@ export default function Stack() {
         {/* Encabezado */}
         <div className="flex flex-col gap-2">
           <span className="text-[#ff8800] text-xs tracking-widest font-mono mb-2">
-            // tecnologías
+            {t.stack.kicker}
           </span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">
-            Stack tecnológico
+            {t.stack.title}
           </h2>
           <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
-            Herramientas y lenguajes con los que trabajo. Desde el modelo de
-            datos hasta la interfaz.
+            {t.stack.subtitle}
           </p>
         </div>
 
@@ -148,23 +150,19 @@ export default function Stack() {
               &nbsp;&nbsp;<span className="text-[#7dd3fc]">databases</span>
               <span className="text-[#ff8800]">:</span>{" "}
               <span className="text-[#e2f0ff]">7</span>
-              <span className="text-[#94a3b8]">
-                , // relacional, documental, grafos, ORM
-              </span>
+              <span className="text-[#94a3b8]">{t.stack.terminal.dbComment}</span>
             </p>
             <p>
               &nbsp;&nbsp;<span className="text-[#7dd3fc]">specialty</span>
               <span className="text-[#ff8800]">:</span>{" "}
-              <span className="text-[#e2f0ff]">
-                "database design & full stack"
-              </span>
+              <span className="text-[#e2f0ff]">{t.stack.terminal.specialty}</span>
             </p>
             <p>
               <span className="text-[#ff8800]">{"}"}</span>
             </p>
 
             {/* SEPARADOR */}
-            <p className="text-[#94a3b8] mt-4">// detailed stack ↓</p>
+            <p className="text-[#94a3b8] mt-4">{t.stack.terminal.detailed}</p>
 
             {/* DETALLE */}
             <p>
@@ -205,7 +203,7 @@ export default function Stack() {
             <p>&nbsp;&nbsp;{"{"}</p>
             <p>
               &nbsp;&nbsp;&nbsp;&nbsp;category:{" "}
-              <span className="text-[#a3e635]">"Bases de datos"</span>,
+              <span className="text-[#a3e635]">"{t.stack.categories.databases}"</span>,
             </p>
             <p>
               &nbsp;&nbsp;&nbsp;&nbsp;items:{" "}
@@ -219,7 +217,7 @@ export default function Stack() {
             <p>&nbsp;&nbsp;{"{"}</p>
             <p>
               &nbsp;&nbsp;&nbsp;&nbsp;category:{" "}
-              <span className="text-[#a3e635]">"Herramientas"</span>,
+              <span className="text-[#a3e635]">"{t.stack.categories.tools}"</span>,
             </p>
             <p>
               &nbsp;&nbsp;&nbsp;&nbsp;items:{" "}

@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import TypingTerminal from "@/components/TypingTerminal";
+import { useLanguage } from "@/lib/language-context";
 
 export default function Hero() {
+  const { t } = useLanguage();
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ export default function Hero() {
         {/* Badge disponible */}
         <div className="flex items-center gap-2 bg-[#0d1525] border border-[#1e3a5f] rounded-full px-4 py-1.5 text-[#ff8800] text-xs tracking-widest">
           <span className="w-2 h-2 rounded-full bg-[#ff8800] animate-pulse" />
-          Disponible para proyectos
+          {t.hero.available}
         </div>
 
         {/* Nombre */}
@@ -33,7 +35,7 @@ export default function Hero() {
         </h1>
 
         <p className="text-[#ff8800] text-sm tracking-widest">
-          // Full Stack Developer & Database Engineer
+          {t.hero.role}
         </p>
 
         {/* Terminal (se escribe sola) */}
@@ -41,10 +43,9 @@ export default function Hero() {
 
         {/* Tagline */}
         <p className="text-[#94a3b8] text-sm text-center leading-relaxed max-w-md">
-          Construyo soluciones completas: desde la base de datos hasta la
-          interfaz.
+          {t.hero.tagline1}
           <br />
-          Backend sólido, frontend limpio, datos bien modelados.
+          {t.hero.tagline2}
         </p>
 
         {/* Botones */}
@@ -53,24 +54,19 @@ export default function Hero() {
             href="#contacto"
             className="bg-[#ff8800] text-[#020d18] font-bold px-10 py-4 rounded-xl text-sm tracking-wide flex items-center justify-center min-w-[180px] shadow-lg hover:scale-105 hover:shadow-[0_0_20px_#ff8800] transition-all duration-300"
           >
-            Hablemos →
+            {t.hero.ctaContact}
           </a>
           <a
             href="#proyectos"
             className="text-[#ff8800] border border-[#1e3a5f] px-10 py-4 rounded-xl text-sm tracking-wide flex items-center justify-center min-w-[180px] hover:border-[#ff8800] hover:scale-105 transition-all duration-300"
           >
-            Ver proyectos ↓
+            {t.hero.ctaProjects}
           </a>
         </div>
 
         {/* Stats */}
         <div className="flex gap-8 flex-wrap justify-center pt-6 border-t border-[#1e3a5f] w-full">
-          {[
-            { num: "4+", lbl: "años programando" },
-            { num: "6+", lbl: "motores de BD" },
-            { num: "20+", lbl: "repos en GitHub" },
-            { num: "10+", lbl: "tecnologías" },
-          ].map(({ num, lbl }) => (
+          {t.hero.stats.map(({ num, lbl }) => (
             <div key={lbl} className="text-center">
               <p className="text-xl font-bold text-[#ff8800]">{num}</p>
               <p className="text-[#94a3b8] text-xs mt-1 tracking-widest">

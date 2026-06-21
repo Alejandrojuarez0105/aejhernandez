@@ -1,0 +1,294 @@
+// Diccionario de traducciones ES / EN.
+// Los `id` de las secciones NO se traducen (son anclas usadas en href="#...").
+
+export type Lang = "es" | "en";
+
+export const translations = {
+  es: {
+    nav: {
+      inicio: "inicio",
+      sobreMi: "sobre mí",
+      stack: "stack",
+      proyectos: "proyectos",
+      contacto: "contacto",
+      toggleLabel: "Switch to English",
+    },
+    hero: {
+      available: "Disponible para proyectos",
+      role: "// Full Stack Developer & Database Engineer",
+      tagline1: "Construyo soluciones completas: desde la base de datos hasta la interfaz.",
+      tagline2: "Backend sólido, frontend limpio, datos bien modelados.",
+      ctaContact: "Hablemos →",
+      ctaProjects: "Ver proyectos ↓",
+      stats: [
+        { num: "4+", lbl: "años programando" },
+        { num: "6+", lbl: "motores de BD" },
+        { num: "20+", lbl: "repos en GitHub" },
+        { num: "20+", lbl: "lenguajes y frameworks" },
+      ],
+    },
+    about: {
+      kicker: "// sobre mí",
+      title: "Cómo empezó todo",
+      p1: "Desde pequeño me preguntaba cómo era posible que una televisión pudiera transmitir imágenes o cómo funcionaban los teléfonos. Todo empezó como curiosidad, pero con el tiempo se convirtió en algo más. Los videojuegos y los juegos móviles despertaron en mí no solo ganas de jugar, sino de entender cómo estaban hechos… e incluso de crear los míos propios.",
+      p2: "En 2021 tuve la oportunidad de estudiar un bachillerato orientado a programación. En 2022 empecé con lenguajes como C y C++ y me adentré de lleno en este mundo, desarrollando proyectos y aprendiendo de forma constante. Incluso antes de eso, ya experimentaba modificando videojuegos, instalando mods o investigando fallos, sin darme cuenta de que estaba dando mis primeros pasos en el ámbito de la tecnología y la seguridad.",
+      p3: "Con el tiempo, fui ampliando mis conocimientos: desde bases de datos hasta desarrollo backend y frontend. Hoy disfruto trabajando en todo el stack, ya que me permite tener una visión completa y control total de lo que construyo.",
+      p4: "Me especializo en diseñar sistemas donde los datos fluyen de forma eficiente, desde el modelo de base de datos hasta la interfaz que los presenta. Trabajo con bases de datos relacionales, documentales y de grafos, adaptándome siempre a las necesidades del problema.",
+      stats: [
+        { num: "4+", lbl: "años programando" },
+        { num: "6+", lbl: "motores de BD" },
+        { num: "20+", lbl: "lenguajes y frameworks" },
+        { num: "20+", lbl: "repos en GitHub" },
+      ],
+      timelineKicker: "// trayectoria",
+      timeline: [
+        {
+          year: "2022",
+          title: "Primer contacto con la programación",
+          desc: "Inicio en C y C++, desarrollando lógica de programación y comprendiendo estructuras básicas. Primeros programas y contacto real con el funcionamiento del software.",
+        },
+        {
+          year: "2023",
+          title: "Fundamentos sólidos en Java",
+          desc: "Aprendizaje de Java enfocado en programación orientada a objetos (POO) y programación estructurada. Desarrollo de una base sólida en diseño, organización del código y buenas prácticas.",
+        },
+        {
+          year: "2024",
+          title: "Backend y modelado de datos",
+          desc: "Desarrollo de aplicaciones con Python y Java. Diseño y gestión de bases de datos en MySQL, PostgreSQL y MongoDB, centrándome en la estructura, relaciones y eficiencia de los datos. Consolidación del enfoque backend.",
+        },
+        {
+          year: "2025",
+          title: "Transición a Full Stack",
+          desc: "Integración del frontend con React, TypeScript, Vite y Tailwind. Construcción de interfaces modernas conectadas a backend. Exploración de bases de datos más avanzadas como Neo4j y uso de plataformas como Supabase.",
+        },
+        {
+          year: "2026",
+          title: "Proyectos reales y stack completo",
+          desc: "Desarrollo full stack con Node.js, trabajando con un stack completo: frontend (React, TypeScript, Vite, Tailwind), backend (Node.js, Python, Java, C#, C, C++) y bases de datos (MySQL, PostgreSQL, MongoDB, Neo4j, Supabase). Construcción de aplicaciones completas y proyectos publicables, incluyendo este portfolio, aplicando buenas prácticas y arquitectura escalable.",
+        },
+      ],
+    },
+    stack: {
+      kicker: "// tecnologías",
+      title: "Stack tecnológico",
+      subtitle: "Herramientas y lenguajes con los que trabajo. Desde el modelo de datos hasta la interfaz.",
+      categories: {
+        frontend: "Frontend",
+        backend: "Backend",
+        databases: "Bases de datos",
+        tools: "Herramientas",
+      },
+      terminal: {
+        dbComment: ", // relacional, documental, grafos, ORM",
+        specialty: '"database design & full stack"',
+        detailed: "// detailed stack ↓",
+      },
+    },
+    projects: {
+      kicker: "// proyectos",
+      title: "Proyectos destacados",
+      subtitle: "Desde análisis de sistemas para clientes reales hasta aplicaciones full stack en construcción.",
+      highlight: "Destacado",
+      viewAll: "Ver todos los repositorios en GitHub ↗",
+      talk: "Hablemos →",
+      statuses: {
+        done: "Terminado",
+        wip: "En desarrollo",
+        soon: "Próximamente",
+      },
+      items: [
+        {
+          status: "done",
+          role: "Analista de sistemas",
+          desc: "Generador de fechas de exámenes desarrollado para un cliente real. Incluye modelo del dominio, actores y casos de uso, prototipos, priorización y documentación completa de sesiones en UML y Markdown.",
+        },
+        {
+          status: "wip",
+          role: "Full Stack Developer",
+          desc: "Plataforma web para un restaurante con sistema de reservas de mesas y videojuegos, reseñas de usuarios y gestión de eventos. Backend en C# con SQL Server, frontend en React + TypeScript + Vite.",
+        },
+        {
+          status: "wip",
+          role: "Full Stack Developer",
+          desc: "Este portfolio. Diseñado y construido desde cero con Next.js, TypeScript y Tailwind CSS. Enfocado en rendimiento, diseño oscuro y experiencia de usuario limpia.",
+        },
+        {
+          name: "¿Próximo proyecto?",
+          status: "soon",
+          role: null,
+          desc: "Siempre hay algo en construcción. Si tienes una idea o un proyecto en mente, hablemos.",
+        },
+      ],
+    },
+    contact: {
+      kicker: "// contacto",
+      title1: "Construyamos algo",
+      title2: "juntos",
+      subtitle: "Abierto a proyectos freelance, colaboraciones y oportunidades laborales. Si tienes una idea o un proyecto en mente, hablemos.",
+      links: [
+        { label: "GitHub", desc: "Mis repositorios y proyectos" },
+        { label: "LinkedIn", desc: "Mi perfil profesional" },
+        { label: "Email", desc: "Escríbeme directamente" },
+      ],
+      emailSubject: "Contacto desde tu portfolio",
+      quickLabel: "Email rápido",
+      quickTitle: "Copiar al portapapeles",
+      copy: "copiar",
+      copied: "✓ copiado",
+      terminal: {
+        availableComment: "// estaré encantado de trabajar juntos",
+        prompt: "// ¿tienes un proyecto en mente?",
+        responseTime: '"menos de 48h"',
+      },
+      footerBuilt: "// construido con Next.js, TypeScript y Tailwind CSS",
+      footerCopyright: "© 2026 Alejandro Emmanuel Juárez Hernández",
+    },
+    typing: { tools: "  herramientas:" },
+  },
+
+  en: {
+    nav: {
+      inicio: "home",
+      sobreMi: "about",
+      stack: "stack",
+      proyectos: "projects",
+      contacto: "contact",
+      toggleLabel: "Cambiar a español",
+    },
+    hero: {
+      available: "Available for projects",
+      role: "// Full Stack Developer & Database Engineer",
+      tagline1: "I build end-to-end solutions: from the database to the interface.",
+      tagline2: "Solid backend, clean frontend, well-modeled data.",
+      ctaContact: "Let's talk →",
+      ctaProjects: "View projects ↓",
+      stats: [
+        { num: "4+", lbl: "years coding" },
+        { num: "6+", lbl: "database engines" },
+        { num: "20+", lbl: "GitHub repos" },
+        { num: "20+", lbl: "languages & frameworks" },
+      ],
+    },
+    about: {
+      kicker: "// about me",
+      title: "How it all started",
+      p1: "Ever since I was a kid I wondered how a television could transmit images or how phones worked. It all began as curiosity, but over time it became something more. Video games and mobile games sparked in me not just the urge to play, but to understand how they were made… and even to create my own.",
+      p2: "In 2021 I had the chance to study a programming-focused high school program. In 2022 I started with languages like C and C++ and dove fully into this world, building projects and learning constantly. Even before that, I was already experimenting by modding games, installing mods or investigating bugs, without realizing I was taking my first steps into technology and security.",
+      p3: "Over time I kept broadening my knowledge: from databases to backend and frontend development. Today I enjoy working across the whole stack, since it gives me a complete view and full control over what I build.",
+      p4: "I specialize in designing systems where data flows efficiently, from the database model to the interface that presents it. I work with relational, document and graph databases, always adapting to the needs of the problem.",
+      stats: [
+        { num: "4+", lbl: "years coding" },
+        { num: "6+", lbl: "database engines" },
+        { num: "20+", lbl: "languages & frameworks" },
+        { num: "20+", lbl: "GitHub repos" },
+      ],
+      timelineKicker: "// journey",
+      timeline: [
+        {
+          year: "2022",
+          title: "First contact with programming",
+          desc: "Started with C and C++, developing programming logic and understanding basic structures. First programs and real contact with how software works.",
+        },
+        {
+          year: "2023",
+          title: "Solid foundations in Java",
+          desc: "Learning Java focused on object-oriented programming (OOP) and structured programming. Building a solid foundation in design, code organization and best practices.",
+        },
+        {
+          year: "2024",
+          title: "Backend and data modeling",
+          desc: "Building applications with Python and Java. Designing and managing databases in MySQL, PostgreSQL and MongoDB, focusing on structure, relationships and data efficiency. Consolidating the backend focus.",
+        },
+        {
+          year: "2025",
+          title: "Transition to Full Stack",
+          desc: "Integrating the frontend with React, TypeScript, Vite and Tailwind. Building modern interfaces connected to the backend. Exploring more advanced databases like Neo4j and using platforms like Supabase.",
+        },
+        {
+          year: "2026",
+          title: "Real projects and a complete stack",
+          desc: "Full stack development with Node.js, working with a complete stack: frontend (React, TypeScript, Vite, Tailwind), backend (Node.js, Python, Java, C#, C, C++) and databases (MySQL, PostgreSQL, MongoDB, Neo4j, Supabase). Building complete, publishable applications, including this portfolio, applying best practices and scalable architecture.",
+        },
+      ],
+    },
+    stack: {
+      kicker: "// technologies",
+      title: "Tech stack",
+      subtitle: "Tools and languages I work with. From the data model to the interface.",
+      categories: {
+        frontend: "Frontend",
+        backend: "Backend",
+        databases: "Databases",
+        tools: "Tools",
+      },
+      terminal: {
+        dbComment: ", // relational, document, graph, ORM",
+        specialty: '"database design & full stack"',
+        detailed: "// detailed stack ↓",
+      },
+    },
+    projects: {
+      kicker: "// projects",
+      title: "Featured projects",
+      subtitle: "From systems analysis for real clients to full stack applications under construction.",
+      highlight: "Featured",
+      viewAll: "View all repositories on GitHub ↗",
+      talk: "Let's talk →",
+      statuses: {
+        done: "Completed",
+        wip: "In progress",
+        soon: "Coming soon",
+      },
+      items: [
+        {
+          status: "done",
+          role: "Systems analyst",
+          desc: "Exam-date generator built for a real client. Includes domain model, actors and use cases, prototypes, prioritization and full session documentation in UML and Markdown.",
+        },
+        {
+          status: "wip",
+          role: "Full Stack Developer",
+          desc: "Web platform for a restaurant with a table and arcade reservation system, user reviews and event management. Backend in C# with SQL Server, frontend in React + TypeScript + Vite.",
+        },
+        {
+          status: "wip",
+          role: "Full Stack Developer",
+          desc: "This portfolio. Designed and built from scratch with Next.js, TypeScript and Tailwind CSS. Focused on performance, a dark design and a clean user experience.",
+        },
+        {
+          name: "Next project?",
+          status: "soon",
+          role: null,
+          desc: "There's always something under construction. If you have an idea or a project in mind, let's talk.",
+        },
+      ],
+    },
+    contact: {
+      kicker: "// contact",
+      title1: "Let's build something",
+      title2: "together",
+      subtitle: "Open to freelance projects, collaborations and job opportunities. If you have an idea or a project in mind, let's talk.",
+      links: [
+        { label: "GitHub", desc: "My repositories and projects" },
+        { label: "LinkedIn", desc: "My professional profile" },
+        { label: "Email", desc: "Write to me directly" },
+      ],
+      emailSubject: "Contact from your portfolio",
+      quickLabel: "Quick email",
+      quickTitle: "Copy to clipboard",
+      copy: "copy",
+      copied: "✓ copied",
+      terminal: {
+        availableComment: "// I'd be glad to work together",
+        prompt: "// got a project in mind?",
+        responseTime: '"under 48h"',
+      },
+      footerBuilt: "// built with Next.js, TypeScript and Tailwind CSS",
+      footerCopyright: "© 2026 Alejandro Emmanuel Juárez Hernández",
+    },
+    typing: { tools: "  tools:" },
+  },
+} as const;
+
+export type Dict = (typeof translations)[Lang];
