@@ -155,6 +155,35 @@ export const translations = {
       footerBuilt: "// construido con Next.js, TypeScript y Tailwind CSS",
       footerCopyright: "© 2026 Alejandro Emmanuel Juárez Hernández",
     },
+    testimonials: {
+      kicker: "// testimonios",
+      title: "Lo que dicen de mí",
+      subtitle:
+        "Opiniones de personas con las que he trabajado o colaborado.",
+      empty:
+        "Aún no hay testimonios. ¿Hemos trabajado juntos? ¡Sé el primero en dejar uno!",
+      leaveButton: "Dejar testimonio",
+      form: {
+        title: "Dejar un testimonio",
+        intro:
+          "Tu testimonio se revisará antes de publicarse. ¡Gracias por tu tiempo!",
+        name: "Nombre",
+        namePlaceholder: "Tu nombre",
+        message: "Testimonio",
+        messagePlaceholder: "Cuéntanos tu experiencia trabajando conmigo...",
+        linkedin: "LinkedIn (opcional)",
+        github: "GitHub (opcional)",
+        linkedinPlaceholder: "https://linkedin.com/in/tu-perfil",
+        githubPlaceholder: "https://github.com/tu-usuario",
+        submit: "Enviar",
+        sending: "Enviando...",
+        cancel: "Cancelar",
+        success:
+          "¡Gracias! Tu testimonio fue enviado y se mostrará tras ser revisado.",
+        error: "Hubo un error al enviar. Inténtalo de nuevo.",
+        required: "El nombre y el testimonio son obligatorios.",
+      },
+    },
     typing: { tools: "  herramientas:", analysis: "  análisis:" },
   },
 
@@ -308,6 +337,34 @@ export const translations = {
       },
       footerBuilt: "// built with Next.js, TypeScript and Tailwind CSS",
       footerCopyright: "© 2026 Alejandro Emmanuel Juárez Hernández",
+    },
+    testimonials: {
+      kicker: "// testimonials",
+      title: "What people say about me",
+      subtitle: "Feedback from people I've worked or collaborated with.",
+      empty:
+        "No testimonials yet. Have we worked together? Be the first to leave one!",
+      leaveButton: "Leave a testimonial",
+      form: {
+        title: "Leave a testimonial",
+        intro:
+          "Your testimonial will be reviewed before being published. Thanks for your time!",
+        name: "Name",
+        namePlaceholder: "Your name",
+        message: "Testimonial",
+        messagePlaceholder: "Tell us about your experience working with me...",
+        linkedin: "LinkedIn (optional)",
+        github: "GitHub (optional)",
+        linkedinPlaceholder: "https://linkedin.com/in/your-profile",
+        githubPlaceholder: "https://github.com/your-username",
+        submit: "Send",
+        sending: "Sending...",
+        cancel: "Cancel",
+        success:
+          "Thank you! Your testimonial was sent and will appear after review.",
+        error: "There was an error sending it. Please try again.",
+        required: "Name and testimonial are required.",
+      },
     },
     typing: { tools: "  tools:", analysis: "  analysis:" },
   },
