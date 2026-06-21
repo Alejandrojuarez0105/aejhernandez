@@ -13,6 +13,7 @@ export const translations = {
       contacto: "contacto",
       toggleLabel: "Switch to English",
       cv: "Descargar CV",
+      backToTop: "Volver arriba",
     },
     hero: {
       available: "Disponible para proyectos",
@@ -166,6 +167,7 @@ export const translations = {
       contacto: "contact",
       toggleLabel: "Cambiar a español",
       cv: "Download CV",
+      backToTop: "Back to top",
     },
     hero: {
       available: "Available for projects",

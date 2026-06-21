@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
+import BackToTop from "@/components/BackToTop";
 import { LanguageProvider } from "@/lib/language-context";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -98,6 +99,7 @@ export default function RootLayout({
         <LanguageProvider>
           <Navbar />
           {children}
+          <BackToTop />
         </LanguageProvider>
         <Analytics />
         <SpeedInsights />
