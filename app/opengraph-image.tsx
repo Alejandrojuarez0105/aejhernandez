@@ -1,6 +1,8 @@
 import { ImageResponse } from "next/og";
 
-// Imagen Open Graph generada dinámicamente (se usa al compartir el link)
+// Imagen Open Graph generada dinámicamente (se usa al compartir el link).
+// Diseño CENTRADO: aunque WhatsApp recorte a un cuadrado central, el recorte
+// captura el badge "A" + nombre limpiamente, igual que el favicon.
 export const alt =
   "Alejandro Emmanuel Juárez Hernández — Full Stack Developer & Database Engineer";
 export const size = { width: 1200, height: 630 };
@@ -15,55 +17,51 @@ export default function OpengraphImage() {
           height: "100%",
           display: "flex",
           flexDirection: "column",
+          alignItems: "center",
           justifyContent: "center",
-          padding: "80px",
+          textAlign: "center",
+          padding: "60px",
           background: "#020d18",
           backgroundImage:
-            "radial-gradient(900px circle at 15% 0%, rgba(255,136,0,0.18), transparent 55%), radial-gradient(700px circle at 100% 100%, rgba(125,211,252,0.10), transparent 55%)",
+            "radial-gradient(700px circle at 50% -5%, rgba(255,136,0,0.18), transparent 60%), radial-gradient(600px circle at 50% 105%, rgba(125,211,252,0.08), transparent 60%)",
           color: "#e2f0ff",
           fontFamily: "monospace",
         }}
       >
-        {/* Fila superior: badge "A" + dominio */}
+        {/* Badge "A" — elemento central (mismo estilo que el favicon) */}
         <div
           style={{
             display: "flex",
             alignItems: "center",
-            gap: 20,
+            justifyContent: "center",
+            width: 130,
+            height: 130,
+            borderRadius: 26,
+            background: "#020d18",
+            border: "3px solid #1e3a5f",
+            color: "#ff8800",
+            fontSize: 84,
+            fontWeight: 700,
+            boxShadow: "0 0 60px rgba(255,136,0,0.25)",
           }}
         >
-          {/* Badge "A" (mismo estilo que el favicon) */}
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              width: 64,
-              height: 64,
-              borderRadius: 12,
-              background: "#020d18",
-              border: "2px solid #1e3a5f",
-              color: "#ff8800",
-              fontSize: 40,
-              fontWeight: 700,
-            }}
-          >
-            A
-          </div>
+          A
+        </div>
 
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-              color: "#94a3b8",
-              fontSize: 26,
-              letterSpacing: 4,
-            }}
-          >
-            <span style={{ color: "#ff8800" }}>{"$"}</span>
-            aejhernandez.dev
-          </div>
+        {/* Dominio */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+            marginTop: 26,
+            color: "#94a3b8",
+            fontSize: 26,
+            letterSpacing: 4,
+          }}
+        >
+          <span style={{ color: "#ff8800" }}>{"$"}</span>
+          aejhernandez.dev
         </div>
 
         {/* Nombre */}
@@ -71,10 +69,11 @@ export default function OpengraphImage() {
           style={{
             display: "flex",
             flexDirection: "column",
-            marginTop: 32,
-            fontSize: 78,
+            alignItems: "center",
+            marginTop: 28,
+            fontSize: 58,
             fontWeight: 700,
-            lineHeight: 1.05,
+            lineHeight: 1.1,
           }}
         >
           <span>Alejandro Emmanuel</span>
@@ -84,25 +83,13 @@ export default function OpengraphImage() {
         {/* Rol */}
         <div
           style={{
-            marginTop: 36,
-            fontSize: 34,
+            marginTop: 26,
+            fontSize: 28,
             color: "#ff8800",
-            letterSpacing: 2,
+            letterSpacing: 1,
           }}
         >
           {"// Full Stack Developer & Database Engineer"}
-        </div>
-
-        {/* Línea inferior */}
-        <div
-          style={{
-            marginTop: 28,
-            fontSize: 26,
-            color: "#94a3b8",
-            maxWidth: 900,
-          }}
-        >
-          Backend sólido, frontend limpio, datos bien modelados.
         </div>
       </div>
     ),
