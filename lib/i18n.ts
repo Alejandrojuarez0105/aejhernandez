@@ -78,7 +78,16 @@ export const translations = {
         backend: "Backend",
         databases: "Bases de datos",
         tools: "Herramientas",
+        analysis: "Análisis y diseño",
       },
+      analysisItems: [
+        "UML",
+        "PlantUML",
+        "Análisis de requisitos",
+        "RUP",
+        "Casos de uso",
+        "Modelado del dominio",
+      ],
       terminal: {
         dbComment: ", // relacional, documental, grafos, ORM",
         specialty: '"database design & full stack"',
@@ -144,7 +153,7 @@ export const translations = {
       footerBuilt: "// construido con Next.js, TypeScript y Tailwind CSS",
       footerCopyright: "© 2026 Alejandro Emmanuel Juárez Hernández",
     },
-    typing: { tools: "  herramientas:" },
+    typing: { tools: "  herramientas:", analysis: "  análisis:" },
   },
 
   en: {
@@ -221,7 +230,16 @@ export const translations = {
         backend: "Backend",
         databases: "Databases",
         tools: "Tools",
+        analysis: "Analysis & Design",
       },
+      analysisItems: [
+        "UML",
+        "PlantUML",
+        "Requirements analysis",
+        "RUP",
+        "Use cases",
+        "Domain modeling",
+      ],
       terminal: {
         dbComment: ", // relational, document, graph, ORM",
         specialty: '"database design & full stack"',
@@ -287,7 +305,7 @@ export const translations = {
       footerBuilt: "// built with Next.js, TypeScript and Tailwind CSS",
       footerCopyright: "© 2026 Alejandro Emmanuel Juárez Hernández",
     },
-    typing: { tools: "  tools:" },
+    typing: { tools: "  tools:", analysis: "  analysis:" },
   },
 } as const;
 

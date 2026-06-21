@@ -7,8 +7,13 @@ import { useLanguage } from "@/lib/language-context";
 const O = "text-[#ff8800]"; // naranja (palabras clave, símbolos)
 const W = "text-[#e2f0ff]"; // claro (valores)
 
-// Construye las líneas (solo cambia la etiqueta de "herramientas" según el idioma)
-function buildLines(toolsLabel: string): [string, string][][] {
+// Construye las líneas (la etiqueta de herramientas/análisis y los items de
+// análisis cambian según el idioma)
+function buildLines(
+  toolsLabel: string,
+  analysisLabel: string,
+  analysisItems: readonly string[],
+): [string, string][][] {
   return [
     [
       ["const", O],
@@ -47,6 +52,11 @@ function buildLines(toolsLabel: string): [string, string][][] {
       [",", O],
     ],
     [
+      [analysisLabel, O],
+      [" [" + analysisItems.map((i) => `"${i}"`).join(", ") + "]", W],
+      [",", O],
+    ],
+    [
       ["  available:", O],
       [" true", O],
     ],
@@ -64,7 +74,10 @@ const Cursor = () => (
 export default function TypingTerminal() {
   const { lang, t } = useLanguage();
 
-  const lines = useMemo(() => buildLines(t.typing.tools), [t.typing.tools]);
+  const lines = useMemo(
+    () => buildLines(t.typing.tools, t.typing.analysis, t.stack.analysisItems),
+    [t.typing.tools, t.typing.analysis, t.stack.analysisItems],
+  );
 
   // Total de caracteres + 1 por línea (pequeña pausa al saltar de línea)
   const TOTAL = useMemo(

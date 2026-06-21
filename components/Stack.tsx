@@ -50,11 +50,20 @@ export default function Stack() {
         W,
       ],
     ],
+    [["  },", W]],
+    [["  {", W]],
+    [["    category: ", W], [`"${t.stack.categories.analysis}"`, GR], [",", W]],
+    [["    items: ", W], [`[${t.stack.analysisItems.join(", ")}]`, W]],
     [["  }", W]],
     [[" ]", O]],
   ];
 
-  const stack = [
+  const stack: {
+    category: string;
+    icon: string;
+    items: readonly string[];
+    wide?: boolean;
+  }[] = [
     {
       category: t.stack.categories.frontend,
       icon: "▢",
@@ -100,6 +109,12 @@ export default function Stack() {
         "Visual Studio 2022",
       ],
     },
+    {
+      category: t.stack.categories.analysis,
+      icon: "◇",
+      items: t.stack.analysisItems,
+      wide: true,
+    },
   ];
 
   const ref = useRef<HTMLDivElement>(null);
@@ -140,10 +155,12 @@ export default function Stack() {
 
         {/* Grid de categorías */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {stack.map(({ category, icon, items }) => (
+          {stack.map(({ category, icon, items, wide }) => (
             <div
               key={category}
-              className="bg-[#0d1525] border border-[#1e3a5f] rounded-xl p-6 flex flex-col gap-5 hover:border-[#ff8800] transition-colors duration-300 group items-center"
+              className={`bg-[#0d1525] border border-[#1e3a5f] rounded-xl p-6 flex flex-col gap-5 hover:border-[#ff8800] transition-colors duration-300 group items-center ${
+                wide ? "md:col-span-2" : ""
+              }`}
             >
               {/* Header de categoría */}
               <div className="flex items-center gap-3 justify-center">
