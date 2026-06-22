@@ -12,6 +12,7 @@ export const supabase = url && anonKey ? createClient(url, anonKey) : null;
 
 export type Testimonial = {
   name: string;
+  role: string | null;
   message: string;
   linkedin: string | null;
   github: string | null;

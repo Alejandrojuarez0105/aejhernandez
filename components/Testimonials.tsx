@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { useLanguage } from "@/lib/language-context";
 import { supabase, type Testimonial } from "@/lib/supabase";
 
@@ -17,9 +18,11 @@ export default function Testimonials() {
   const [items, setItems] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
   const [open, setOpen] = useState(false);
+  const [mounted, setMounted] = useState(false); // para el portal (solo cliente)
 
   // Estado del formulario
   const [name, setName] = useState("");
+  const [role, setRole] = useState("");
   const [message, setMessage] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
@@ -51,7 +54,7 @@ export default function Testimonials() {
       }
       const { data } = await supabase
         .from("testimonials")
-        .select("name, message, linkedin, github, created_at")
+        .select("name, role, message, linkedin, github, created_at")
         .eq("approved", true)
         .order("created_at", { ascending: false });
       if (active) {
@@ -73,8 +76,14 @@ export default function Testimonials() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  // El portal solo puede montarse en el cliente (necesita document)
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const resetForm = () => {
     setName("");
+    setRole("");
     setMessage("");
     setLinkedin("");
     setGithub("");
@@ -92,7 +101,7 @@ export default function Testimonials() {
       return;
     }
 
-    if (!name.trim() || !message.trim()) {
+    if (!name.trim() || !role.trim() || !message.trim()) {
       setStatus("error");
       setErrorMsg(t.testimonials.form.required);
       return;
@@ -109,6 +118,7 @@ export default function Testimonials() {
 
     const { error } = await supabase.from("testimonials").insert({
       name: name.trim(),
+      role: role.trim(),
       message: message.trim(),
       linkedin: linkedin.trim() ? normalizeUrl(linkedin.trim()) : null,
       github: github.trim() ? normalizeUrl(github.trim()) : null,
@@ -165,9 +175,16 @@ export default function Testimonials() {
                   {item.message}
                 </p>
                 <div className="flex items-end justify-between gap-3 pt-2 border-t border-[#1e3a5f]">
-                  <span className="text-[#e2f0ff] text-sm font-bold">
-                    {item.name}
-                  </span>
+                  <div className="flex flex-col">
+                    <span className="text-[#e2f0ff] text-sm font-bold">
+                      {item.name}
+                    </span>
+                    {item.role && (
+                      <span className="text-[#94a3b8] text-xs">
+                        {item.role}
+                      </span>
+                    )}
+                  </div>
                   <div className="flex gap-3 shrink-0">
                     {item.linkedin && (
                       <a
@@ -214,13 +231,15 @@ export default function Testimonials() {
         </div>
       </div>
 
-      {/* Modal con el formulario */}
-      {open && (
-        <div
-          className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
-          onClick={closeModal}
-          role="dialog"
-          aria-modal="true"
+      {/* Modal con el formulario (portal al <body> para escapar del transform de la sección) */}
+      {mounted &&
+        open &&
+        createPortal(
+          <div
+            className="fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            onClick={closeModal}
+            role="dialog"
+            aria-modal="true"
           aria-label={t.testimonials.form.title}
         >
           <div
@@ -273,6 +292,20 @@ export default function Testimonials() {
                       value={name}
                       onChange={(e) => setName(e.target.value)}
                       placeholder={t.testimonials.form.namePlaceholder}
+                      required
+                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
+                    />
+                  </label>
+
+                  <label className="flex flex-col gap-1.5">
+                    <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                      {t.testimonials.form.role}
+                    </span>
+                    <input
+                      type="text"
+                      value={role}
+                      onChange={(e) => setRole(e.target.value)}
+                      placeholder={t.testimonials.form.rolePlaceholder}
                       required
                       className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
                     />
@@ -344,8 +377,9 @@ export default function Testimonials() {
               </>
             )}
           </div>
-        </div>
-      )}
+        </div>,
+          document.body,
+        )}
     </section>
   );
 }
