@@ -26,6 +26,7 @@ export default function Testimonials() {
   const [message, setMessage] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
+  const [website, setWebsite] = useState("");
   const [honeypot, setHoneypot] = useState(""); // anti-bots (oculto)
   const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">(
     "idle",
@@ -54,7 +55,7 @@ export default function Testimonials() {
       }
       const { data } = await supabase
         .from("testimonials")
-        .select("name, role, message, linkedin, github, created_at")
+        .select("name, role, message, linkedin, github, website, created_at")
         .eq("approved", true)
         .order("created_at", { ascending: false });
       if (active) {
@@ -87,6 +88,7 @@ export default function Testimonials() {
     setMessage("");
     setLinkedin("");
     setGithub("");
+    setWebsite("");
     setHoneypot("");
     setStatus("idle");
     setErrorMsg("");
@@ -122,6 +124,7 @@ export default function Testimonials() {
       message: message.trim(),
       linkedin: linkedin.trim() ? normalizeUrl(linkedin.trim()) : null,
       github: github.trim() ? normalizeUrl(github.trim()) : null,
+      website: website.trim() ? normalizeUrl(website.trim()) : null,
     });
 
     if (error) {
@@ -204,6 +207,16 @@ export default function Testimonials() {
                         className="text-[#94a3b8] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
                       >
                         GitHub ↗
+                      </a>
+                    )}
+                    {item.website && (
+                      <a
+                        href={item.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#94a3b8] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
+                      >
+                        Web ↗
                       </a>
                     )}
                   </div>
@@ -347,6 +360,19 @@ export default function Testimonials() {
                       value={github}
                       onChange={(e) => setGithub(e.target.value)}
                       placeholder={t.testimonials.form.githubPlaceholder}
+                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
+                    />
+                  </label>
+
+                  <label className="flex flex-col gap-1.5">
+                    <span className="text-[#94a3b8] text-xs font-mono tracking-widest">
+                      {t.testimonials.form.website}
+                    </span>
+                    <input
+                      type="text"
+                      value={website}
+                      onChange={(e) => setWebsite(e.target.value)}
+                      placeholder={t.testimonials.form.websitePlaceholder}
                       className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
                     />
                   </label>

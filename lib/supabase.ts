@@ -16,5 +16,6 @@ export type Testimonial = {
   message: string;
   linkedin: string | null;
   github: string | null;
+  website: string | null;
   created_at: string;
 };
