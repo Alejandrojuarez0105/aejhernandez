@@ -5,11 +5,6 @@ import { createPortal } from "react-dom";
 import { useLanguage } from "@/lib/language-context";
 import { supabase, type Testimonial } from "@/lib/supabase";
 
-// Asegura que un enlace tenga protocolo (por si alguien escribe "linkedin.com/...")
-function normalizeUrl(value: string): string {
-  return /^https?:\/\//i.test(value) ? value : `https://${value}`;
-}
-
 export default function Testimonials() {
   const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
@@ -109,29 +104,32 @@ export default function Testimonials() {
       return;
     }
 
-    if (!supabase) {
-      setStatus("error");
-      setErrorMsg(t.testimonials.form.error);
-      return;
-    }
-
     setStatus("sending");
     setErrorMsg("");
 
-    const { error } = await supabase.from("testimonials").insert({
-      name: name.trim(),
-      role: role.trim(),
-      message: message.trim(),
-      linkedin: linkedin.trim() ? normalizeUrl(linkedin.trim()) : null,
-      github: github.trim() ? normalizeUrl(github.trim()) : null,
-      website: website.trim() ? normalizeUrl(website.trim()) : null,
-    });
+    try {
+      // Enviamos al servidor: él inserta en Supabase y manda el email de aviso.
+      const res = await fetch("/api/testimonials", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: name.trim(),
+          role: role.trim(),
+          message: message.trim(),
+          linkedin: linkedin.trim(),
+          github: github.trim(),
+          website: website.trim(),
+          honeypot,
+        }),
+      });
 
-    if (error) {
+      if (!res.ok) {
+        throw new Error("request-failed");
+      }
+      setStatus("success");
+    } catch {
       setStatus("error");
       setErrorMsg(t.testimonials.form.error);
-    } else {
-      setStatus("success");
     }
   };
 
