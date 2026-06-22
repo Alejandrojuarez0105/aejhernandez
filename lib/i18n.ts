@@ -190,6 +190,13 @@ export const translations = {
       },
     },
     typing: { tools: "  herramientas:", analysis: "  análisis:" },
+    notFound: {
+      code: "// error 404 — ruta no encontrada",
+      title: "Esta página no existe",
+      description:
+        "La dirección que buscas no está aquí. Puede que el enlace sea incorrecto o que la página se haya movido.",
+      back: "Volver al inicio",
+    },
   },
 
   en: {
@@ -377,6 +384,13 @@ export const translations = {
       },
     },
     typing: { tools: "  tools:", analysis: "  analysis:" },
+    notFound: {
+      code: "// error 404 — route not found",
+      title: "This page doesn't exist",
+      description:
+        "The address you're looking for isn't here. The link may be wrong or the page may have moved.",
+      back: "Back to home",
+    },
   },
 } as const;
 
