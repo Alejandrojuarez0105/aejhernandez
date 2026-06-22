@@ -5,6 +5,9 @@ import { createPortal } from "react-dom";
 import { useLanguage } from "@/lib/language-context";
 import { supabase, type Testimonial } from "@/lib/supabase";
 
+// Cuántos testimonios se muestran antes de pulsar "Ver más".
+const INITIAL_COUNT = 6;
+
 export default function Testimonials() {
   const { t } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
@@ -12,6 +15,7 @@ export default function Testimonials() {
 
   const [items, setItems] = useState<Testimonial[]>([]);
   const [loading, setLoading] = useState(true);
+  const [expanded, setExpanded] = useState(false); // "Ver más" / "Ver menos"
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false); // para el portal (solo cliente)
 
@@ -50,8 +54,11 @@ export default function Testimonials() {
       }
       const { data } = await supabase
         .from("testimonials")
-        .select("name, role, message, linkedin, github, website, created_at")
+        .select(
+          "name, role, message, linkedin, github, website, featured, created_at",
+        )
         .eq("approved", true)
+        .order("featured", { ascending: false }) // destacados primero
         .order("created_at", { ascending: false });
       if (active) {
         setItems((data as Testimonial[]) ?? []);
@@ -139,6 +146,10 @@ export default function Testimonials() {
     setTimeout(resetForm, 300);
   };
 
+  // Solo mostramos los primeros INITIAL_COUNT hasta que se pulse "Ver más".
+  // Como la query ya ordena los destacados primero, esos entran por defecto.
+  const visibleItems = expanded ? items : items.slice(0, INITIAL_COUNT);
+
   return (
     <section
       id="testimonios"
@@ -147,7 +158,7 @@ export default function Testimonials() {
         visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"
       }`}
     >
-      <div className="w-full max-w-5xl flex flex-col gap-10">
+      <div className="w-full max-w-6xl flex flex-col gap-10">
         {/* Encabezado */}
         <div className="flex flex-col gap-2">
           <span className="text-[#ff8800] text-xs tracking-widest font-mono">
@@ -163,8 +174,8 @@ export default function Testimonials() {
 
         {/* Lista de testimonios */}
         {!loading && items.length > 0 && (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {items.map((item, i) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
+            {visibleItems.map((item, i) => (
               <div
                 key={i}
                 className="bg-[#0d1525] border border-[#1e3a5f] rounded-xl p-6 flex flex-col gap-4"
@@ -221,6 +232,18 @@ export default function Testimonials() {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {/* Ver más / Ver menos */}
+        {!loading && items.length > INITIAL_COUNT && (
+          <div className="flex justify-center -mt-2">
+            <button
+              onClick={() => setExpanded((v) => !v)}
+              className="text-[#94a3b8] text-xs font-mono tracking-widest border border-[#1e3a5f] rounded-lg px-5 py-2.5 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
+            >
+              {expanded ? t.testimonials.showLess : t.testimonials.showMore}
+            </button>
           </div>
         )}
 

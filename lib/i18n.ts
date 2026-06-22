@@ -164,6 +164,8 @@ export const translations = {
       empty:
         "Aún no hay testimonios. ¿Hemos trabajado juntos? ¡Sé el primero en dejar uno!",
       leaveButton: "Dejar testimonio",
+      showMore: "Ver más testimonios",
+      showLess: "Ver menos",
       form: {
         title: "Dejar un testimonio",
         intro:
@@ -358,6 +360,8 @@ export const translations = {
       empty:
         "No testimonials yet. Have we worked together? Be the first to leave one!",
       leaveButton: "Leave a testimonial",
+      showMore: "Show more testimonials",
+      showLess: "Show less",
       form: {
         title: "Leave a testimonial",
         intro:
