@@ -188,6 +188,8 @@ export const translations = {
         success:
           "¡Gracias! Tu testimonio fue enviado y se mostrará tras ser revisado.",
         error: "Hubo un error al enviar. Inténtalo de nuevo.",
+        rateLimited:
+          "Has enviado demasiados testimonios. Espera unos minutos e inténtalo de nuevo.",
         required: "El nombre, el rol y el testimonio son obligatorios.",
       },
     },
@@ -384,6 +386,8 @@ export const translations = {
         success:
           "Thank you! Your testimonial was sent and will appear after review.",
         error: "There was an error sending it. Please try again.",
+        rateLimited:
+          "You've sent too many testimonials. Please wait a few minutes and try again.",
         required: "Name, role and testimonial are required.",
       },
     },

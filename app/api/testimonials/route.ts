@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { Resend } from "resend";
+import { Ratelimit } from "@upstash/ratelimit";
+import { Redis } from "@upstash/redis";
 
 // El SDK de Resend necesita el runtime de Node (no Edge).
 export const runtime = "nodejs";
@@ -13,6 +15,23 @@ const resendApiKey = process.env.RESEND_API_KEY;
 const notifyEmail =
   process.env.TESTIMONIAL_NOTIFY_EMAIL ?? "aejhernandezdev@gmail.com";
 const fromEmail = process.env.TESTIMONIAL_FROM_EMAIL ?? "onboarding@resend.dev";
+
+// Rate limiting con Upstash. Si faltan las variables, queda desactivado
+// (p. ej. en local sin claves) y el endpoint sigue funcionando.
+const redisUrl = process.env.UPSTASH_REDIS_REST_URL;
+const redisToken = process.env.UPSTASH_REDIS_REST_TOKEN;
+const ratelimit =
+  redisUrl && redisToken
+    ? new Ratelimit({
+        redis: new Redis({ url: redisUrl, token: redisToken }),
+        // Máximo 3 envíos por IP cada 10 minutos (ventana deslizante).
+        limiter: Ratelimit.slidingWindow(3, "10 m"),
+        prefix: "ratelimit:testimonials",
+      })
+    : null;
+
+// Límites de longitud para evitar payloads abusivos.
+const MAX = { name: 100, role: 100, message: 1000, url: 300 };
 
 // Asegura que un enlace tenga protocolo (por si alguien escribe "linkedin.com/...").
 function normalizeUrl(value: string): string {
@@ -30,6 +49,18 @@ function escapeHtml(value: string): string {
 }
 
 export async function POST(req: Request) {
+  // 1) Rate limit por IP, lo antes posible para soltar tráfico abusivo.
+  if (ratelimit) {
+    const ip =
+      req.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+      req.headers.get("x-real-ip") ||
+      "unknown";
+    const { success } = await ratelimit.limit(ip);
+    if (!success) {
+      return NextResponse.json({ error: "rate-limited" }, { status: 429 });
+    }
+  }
+
   let body: Record<string, unknown>;
   try {
     body = await req.json();
@@ -54,6 +85,18 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "missing-fields" }, { status: 400 });
   }
 
+  // Validación de longitud: corta payloads abusivos.
+  if (
+    name.length > MAX.name ||
+    role.length > MAX.role ||
+    message.length > MAX.message ||
+    linkedin.length > MAX.url ||
+    github.length > MAX.url ||
+    website.length > MAX.url
+  ) {
+    return NextResponse.json({ error: "too-long" }, { status: 400 });
+  }
+
   if (!supabaseUrl || !supabaseAnonKey) {
     return NextResponse.json({ error: "server-misconfigured" }, { status: 500 });
   }
@@ -62,7 +105,7 @@ export async function POST(req: Request) {
   const cleanGithub = github ? normalizeUrl(github) : null;
   const cleanWebsite = website ? normalizeUrl(website) : null;
 
-  // 1) Guardar el testimonio en Supabase (queda con approved=false por RLS).
+  // 2) Guardar el testimonio en Supabase (queda con approved=false por RLS).
   const supabase = createClient(supabaseUrl, supabaseAnonKey);
   const { error } = await supabase.from("testimonials").insert({
     name,
@@ -78,7 +121,7 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: "insert-failed" }, { status: 500 });
   }
 
-  // 2) Avisar por email. Si falla, NO rompemos el éxito: el testimonio ya se
+  // 3) Avisar por email. Si falla, NO rompemos el éxito: el testimonio ya se
   //    guardó; el email es solo una notificación para moderarlo.
   if (resendApiKey) {
     try {

@@ -130,6 +130,11 @@ export default function Testimonials() {
         }),
       });
 
+      if (res.status === 429) {
+        setStatus("error");
+        setErrorMsg(t.testimonials.form.rateLimited);
+        return;
+      }
       if (!res.ok) {
         throw new Error("request-failed");
       }
@@ -327,6 +332,7 @@ export default function Testimonials() {
                       onChange={(e) => setName(e.target.value)}
                       placeholder={t.testimonials.form.namePlaceholder}
                       required
+                      maxLength={100}
                       className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
                     />
                   </label>
@@ -341,6 +347,7 @@ export default function Testimonials() {
                       onChange={(e) => setRole(e.target.value)}
                       placeholder={t.testimonials.form.rolePlaceholder}
                       required
+                      maxLength={100}
                       className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
                     />
                   </label>
@@ -354,6 +361,7 @@ export default function Testimonials() {
                       onChange={(e) => setMessage(e.target.value)}
                       placeholder={t.testimonials.form.messagePlaceholder}
                       required
+                      maxLength={1000}
                       rows={4}
                       className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors resize-none"
                     />
@@ -368,6 +376,7 @@ export default function Testimonials() {
                       value={linkedin}
                       onChange={(e) => setLinkedin(e.target.value)}
                       placeholder={t.testimonials.form.linkedinPlaceholder}
+                      maxLength={300}
                       className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
                     />
                   </label>
@@ -381,6 +390,7 @@ export default function Testimonials() {
                       value={github}
                       onChange={(e) => setGithub(e.target.value)}
                       placeholder={t.testimonials.form.githubPlaceholder}
+                      maxLength={300}
                       className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
                     />
                   </label>
@@ -394,6 +404,7 @@ export default function Testimonials() {
                       value={website}
                       onChange={(e) => setWebsite(e.target.value)}
                       placeholder={t.testimonials.form.websitePlaceholder}
+                      maxLength={300}
                       className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
                     />
                   </label>
