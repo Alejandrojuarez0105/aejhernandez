@@ -14,6 +14,7 @@ export default function Navbar() {
     { id: "sobre-mí", label: t.nav.sobreMi },
     { id: "stack", label: t.nav.stack },
     { id: "proyectos", label: t.nav.proyectos },
+    { id: "testimonios", label: t.nav.testimonios },
     { id: "contacto", label: t.nav.contacto },
   ];
 
