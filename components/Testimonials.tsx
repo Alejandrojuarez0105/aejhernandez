@@ -242,7 +242,7 @@ export default function Testimonials() {
 
         {/* Ver más / Ver menos */}
         {!loading && items.length > INITIAL_COUNT && (
-          <div className="flex justify-center -mt-2">
+          <div className="flex justify-center -mt-2 print:hidden">
             <button
               onClick={() => setExpanded((v) => !v)}
               className="text-[var(--text-muted)] text-xs font-mono tracking-widest border border-[#1e3a5f] rounded-lg px-5 py-2.5 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
@@ -260,7 +260,7 @@ export default function Testimonials() {
         )}
 
         {/* Botón para dejar testimonio */}
-        <div className="flex justify-center">
+        <div className="flex justify-center print:hidden">
           <button
             onClick={() => setOpen(true)}
             className="bg-[#ff8800] text-[#020d18] font-bold px-8 py-3.5 rounded-xl text-sm tracking-wide flex items-center gap-2 shadow-lg hover:scale-105 hover:shadow-[0_0_20px_#ff8800] transition-all duration-300"

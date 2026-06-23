@@ -142,7 +142,7 @@ export default function TypingTerminal() {
   let acc = 0;
 
   return (
-    <div className="w-full bg-[#060d18] border border-[#1e3a5f] rounded-xl overflow-hidden">
+    <div className="w-full bg-[#060d18] border border-[#1e3a5f] rounded-xl overflow-hidden print:hidden">
       {/* Barra superior */}
       <div className="flex items-center gap-2 bg-[#0d1525] border-b border-[#1e3a5f] px-4 py-2.5">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />

@@ -65,3 +65,85 @@ body {
     animation-duration: 0.01ms !important;
   }
 }
+
+/* Impresión / "Guardar como PDF" (Ctrl+P): versión clara tipo documento.
+   El navegador no imprime fondos por defecto, así que el tema oscuro dejaría
+   el texto claro casi invisible. Aquí forzamos fondo blanco + texto oscuro,
+   ocultamos la navegación y los botones, y mostramos las secciones que entran
+   con animación (que en pantalla arrancan con opacity-0). */
+@media print {
+  /* Quita los márgenes/encabezados gigantes y compacta el documento */
+  html {
+    scroll-padding-top: 0 !important;
+  }
+
+  body {
+    background: #ffffff !important;
+    background-image: none !important;
+    color: #1a1a1a !important;
+  }
+
+  *,
+  *::before,
+  *::after {
+    color: #1a1a1a !important;
+    background-color: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  /* Conserva un acento naranja (más oscuro) en etiquetas, años y roles */
+  [class*="#ff8800"] {
+    color: #c2410c !important;
+  }
+
+  /* Bordes suaves para que las tarjetas se sigan distinguiendo en papel */
+  [class*="border-"] {
+    border-color: #d1d5db !important;
+  }
+
+  /* Oculta navbar, botón flotante y todo lo marcado con print:hidden.
+     Se cubre por tipo de elemento (header/nav) y por la clase utilitaria,
+     por si el navegador repite los position:fixed en cada página. */
+  header,
+  nav,
+  .fixed,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Compacta el espaciado vertical para no dejar páginas casi vacías.
+     OJO: no usar break-inside:avoid en section (empuja bloques grandes a la
+     página siguiente y genera huecos). Solo se protege a piezas pequeñas. */
+  section {
+    min-height: 0 !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
+  /* Evita que una tarjeta, testimonio, imagen o título se parta entre páginas */
+  article,
+  li,
+  blockquote,
+  img,
+  h1,
+  h2,
+  h3 {
+    break-inside: avoid;
+  }
+
+  h1,
+  h2,
+  h3 {
+    break-after: avoid;
+  }
+
+  a {
+    text-decoration: none;
+  }
+}

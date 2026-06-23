@@ -107,7 +107,7 @@ export default function TypingCode({
   return (
     <div
       ref={ref}
-      className="bg-[#060d18] border border-[#1e3a5f] rounded-xl overflow-hidden w-full"
+      className="bg-[#060d18] border border-[#1e3a5f] rounded-xl overflow-hidden w-full print:hidden"
     >
       {/* Barra superior */}
       <div className="flex items-center gap-2 bg-[#0d1525] border-b border-[#1e3a5f] px-4 py-2.5">

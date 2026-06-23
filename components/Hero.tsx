@@ -51,7 +51,7 @@ export default function Hero() {
         </p>
 
         {/* Botones */}
-        <div className="flex gap-5 flex-wrap justify-center mt-2">
+        <div className="flex gap-5 flex-wrap justify-center mt-2 print:hidden">
           <a
             href="#contacto"
             className="bg-[#ff8800] text-[#020d18] font-bold px-10 py-4 rounded-xl text-sm tracking-wide flex items-center justify-center min-w-[180px] shadow-lg hover:scale-105 hover:shadow-[0_0_20px_#ff8800] transition-all duration-300"
