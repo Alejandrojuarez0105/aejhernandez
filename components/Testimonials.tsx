@@ -9,7 +9,7 @@ import { supabase, type Testimonial } from "@/lib/supabase";
 const INITIAL_COUNT = 6;
 
 export default function Testimonials() {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -22,6 +22,7 @@ export default function Testimonials() {
   // Estado del formulario
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
+  const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [linkedin, setLinkedin] = useState("");
   const [github, setGithub] = useState("");
@@ -87,6 +88,7 @@ export default function Testimonials() {
   const resetForm = () => {
     setName("");
     setRole("");
+    setEmail("");
     setMessage("");
     setLinkedin("");
     setGithub("");
@@ -105,9 +107,16 @@ export default function Testimonials() {
       return;
     }
 
-    if (!name.trim() || !role.trim() || !message.trim()) {
+    if (!name.trim() || !role.trim() || !email.trim() || !message.trim()) {
       setStatus("error");
       setErrorMsg(t.testimonials.form.required);
+      return;
+    }
+
+    // Validación básica de email en el cliente (la real es el doble opt-in).
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim())) {
+      setStatus("error");
+      setErrorMsg(t.testimonials.form.invalidEmail);
       return;
     }
 
@@ -115,24 +124,37 @@ export default function Testimonials() {
     setErrorMsg("");
 
     try {
-      // Enviamos al servidor: él inserta en Supabase y manda el email de aviso.
+      // Enviamos al servidor: inserta en Supabase y manda el correo de
+      // verificación al visitante (doble opt-in).
       const res = await fetch("/api/testimonials", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name: name.trim(),
           role: role.trim(),
+          email: email.trim(),
           message: message.trim(),
           linkedin: linkedin.trim(),
           github: github.trim(),
           website: website.trim(),
           honeypot,
+          lang,
         }),
       });
 
       if (res.status === 429) {
         setStatus("error");
         setErrorMsg(t.testimonials.form.rateLimited);
+        return;
+      }
+      if (res.status === 400) {
+        const data = await res.json().catch(() => null);
+        setStatus("error");
+        setErrorMsg(
+          data?.error === "invalid-email"
+            ? t.testimonials.form.invalidEmail
+            : t.testimonials.form.required,
+        );
         return;
       }
       if (!res.ok) {
@@ -350,6 +372,24 @@ export default function Testimonials() {
                       maxLength={100}
                       className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
                     />
+                  </label>
+
+                  <label className="flex flex-col gap-1.5">
+                    <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                      {t.testimonials.form.email}
+                    </span>
+                    <input
+                      type="email"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder={t.testimonials.form.emailPlaceholder}
+                      required
+                      maxLength={200}
+                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
+                    />
+                    <span className="text-[var(--text-muted)] text-[11px] leading-snug">
+                      {t.testimonials.form.emailNote}
+                    </span>
                   </label>
 
                   <label className="flex flex-col gap-1.5">
