@@ -42,10 +42,12 @@ export default function Hero() {
         <TypingTerminal />
 
         {/* Tagline */}
-        <p className="text-[var(--text-muted)] text-sm text-center leading-relaxed max-w-md">
+        <p className="text-[var(--text-muted)] text-sm text-center leading-relaxed max-w-2xl">
           {t.hero.tagline1}
           <br />
           {t.hero.tagline2}
+          <br />
+          {t.hero.tagline3}
         </p>
 
         {/* Botones */}

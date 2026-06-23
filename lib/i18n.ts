@@ -19,8 +19,9 @@ export const translations = {
     hero: {
       available: "Disponible para proyectos",
       role: "// Full Stack Developer & Database Engineer",
-      tagline1: "Construyo soluciones completas: desde la base de datos hasta la interfaz.",
-      tagline2: "Backend sólido, frontend limpio, datos bien modelados.",
+      tagline1: "Desarrollo aplicaciones web y soluciones de software que permiten automatizar procesos, organizar información y mejorar la experiencia de los usuarios.",
+      tagline2: "Trabajo tanto en la parte visual de las aplicaciones como en la lógica interna y la gestión de datos, participando en todas las fases del desarrollo de un proyecto.",
+      tagline3: "Antes de programar, me aseguro de entender bien qué se necesita: realizo el análisis de requisitos, defino cómo lo usarán las personas y represento la información clave del proyecto, apoyándome en metodologías ordenadas.",
       ctaContact: "Hablemos →",
       ctaProjects: "Ver proyectos ↓",
       stats: [
@@ -218,8 +219,9 @@ export const translations = {
     hero: {
       available: "Available for projects",
       role: "// Full Stack Developer & Database Engineer",
-      tagline1: "I build end-to-end solutions: from the database to the interface.",
-      tagline2: "Solid backend, clean frontend, well-modeled data.",
+      tagline1: "I build web applications and software solutions that automate processes, organize information and improve the user experience.",
+      tagline2: "I work on both the visual side of the applications and the internal logic and data management, taking part in every phase of a project.",
+      tagline3: "Before coding, I make sure I understand what's needed: I carry out requirements analysis, define how people will use the product and map out the project's key information, supported by structured methodologies.",
       ctaContact: "Let's talk →",
       ctaProjects: "View projects ↓",
       stats: [
