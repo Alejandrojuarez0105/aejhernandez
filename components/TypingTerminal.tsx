@@ -148,7 +148,7 @@ export default function TypingTerminal() {
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />
-        <span className="text-[#94a3b8] text-xs ml-2 tracking-widest">
+        <span className="text-[var(--text-muted)] text-xs ml-2 tracking-widest">
           terminal — aehernandez.dev
         </span>
       </div>

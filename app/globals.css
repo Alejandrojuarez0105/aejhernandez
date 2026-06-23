@@ -1,5 +1,12 @@
 @import "tailwindcss";
 
+:root {
+  /* Texto atenuado (comentarios, descripciones, metadatos). Más claro que el
+     slate-400 original (#94a3b8) para mejorar el contraste sobre el fondo
+     oscuro. Se reasignará al implementar el modo claro. */
+  --text-muted: #c2cfe0;
+}
+
 /* El reset va dentro de @layer base para NO pisar las utilidades de Tailwind
    (p-*, pt-*, m-*…). Si se deja sin capa, anula todo el padding/margin. */
 @layer base {

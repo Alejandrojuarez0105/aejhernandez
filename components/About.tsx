@@ -39,19 +39,19 @@ export default function About() {
             {t.about.title}
           </h2>
 
-          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-2">
+          <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg mt-2">
             {t.about.p1}
           </p>
 
-          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg">
+          <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg">
             {t.about.p2}
           </p>
 
-          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg">
+          <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg">
             {t.about.p3}
           </p>
 
-          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg">
+          <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg">
             {t.about.p4}
           </p>
           </div>
@@ -78,7 +78,7 @@ export default function About() {
               <p className="text-2xl font-bold text-[#ff8800] font-mono">
                 {num}
               </p>
-              <p className="text-[#94a3b8] text-xs mt-1 tracking-widest">
+              <p className="text-[var(--text-muted)] text-xs mt-1 tracking-widest">
                 {lbl}
               </p>
             </div>
@@ -108,7 +108,7 @@ export default function About() {
                   <p className="text-[#e2f0ff] text-sm font-bold mt-0.5">
                     {item.title}
                   </p>
-                  <p className="text-[#94a3b8] text-xs leading-relaxed mt-1 max-w-md">
+                  <p className="text-[var(--text-muted)] text-xs leading-relaxed mt-1 max-w-md">
                     {item.desc}
                   </p>
                 </div>

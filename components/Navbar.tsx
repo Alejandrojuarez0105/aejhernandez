@@ -74,7 +74,7 @@ export default function Navbar() {
               className={`text-xs tracking-widest transition-colors ${
                 active === id
                   ? "text-[#ff8800]"
-                  : "text-[#94a3b8] hover:text-[#ff8800]"
+                  : "text-[var(--text-muted)] hover:text-[#ff8800]"
               }`}
             >
               {label}
@@ -85,7 +85,7 @@ export default function Navbar() {
           <button
             onClick={toggle}
             aria-label={t.nav.toggleLabel}
-            className="flex items-center gap-1 text-xs tracking-widest font-mono text-[#94a3b8] border border-[#1e3a5f] rounded-lg px-2.5 py-1 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
+            className="flex items-center gap-1 text-xs tracking-widest font-mono text-[var(--text-muted)] border border-[#1e3a5f] rounded-lg px-2.5 py-1 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
           >
             <span className={lang === "es" ? "text-[#ff8800]" : ""}>ES</span>
             <span className="text-[#1e3a5f]">/</span>
@@ -109,7 +109,7 @@ export default function Navbar() {
           <button
             onClick={toggle}
             aria-label={t.nav.toggleLabel}
-            className="flex items-center gap-1 text-xs tracking-widest font-mono text-[#94a3b8] border border-[#1e3a5f] rounded-lg px-2.5 py-1 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
+            className="flex items-center gap-1 text-xs tracking-widest font-mono text-[var(--text-muted)] border border-[#1e3a5f] rounded-lg px-2.5 py-1 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
           >
             <span className={lang === "es" ? "text-[#ff8800]" : ""}>ES</span>
             <span className="text-[#1e3a5f]">/</span>
@@ -167,7 +167,7 @@ export default function Navbar() {
               className={`py-2.5 text-xs tracking-widest transition-colors ${
                 active === id
                   ? "text-[#ff8800]"
-                  : "text-[#94a3b8] hover:text-[#ff8800]"
+                  : "text-[var(--text-muted)] hover:text-[#ff8800]"
               }`}
             >
               {label}

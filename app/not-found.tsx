@@ -16,7 +16,7 @@ export default function NotFound() {
             <span className="w-3 h-3 rounded-full bg-[#ff5f57]" />
             <span className="w-3 h-3 rounded-full bg-[#febc2e]" />
             <span className="w-3 h-3 rounded-full bg-[#28c840]" />
-            <span className="ml-2 text-[#94a3b8] text-xs font-mono">~/404</span>
+            <span className="ml-2 text-[var(--text-muted)] text-xs font-mono">~/404</span>
           </div>
 
           {/* Contenido */}
@@ -30,7 +30,7 @@ export default function NotFound() {
             <h2 className="text-xl md:text-2xl font-bold text-[#e2f0ff]">
               {t.notFound.title}
             </h2>
-            <p className="text-[#94a3b8] text-sm leading-relaxed">
+            <p className="text-[var(--text-muted)] text-sm leading-relaxed">
               {t.notFound.description}
             </p>
             <Link

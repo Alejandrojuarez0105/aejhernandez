@@ -172,7 +172,7 @@ export default function Testimonials() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">
             {t.testimonials.title}
           </h2>
-          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
+          <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg mt-1">
             {t.testimonials.subtitle}
           </p>
         </div>
@@ -188,7 +188,7 @@ export default function Testimonials() {
                 <p className="text-[#ff8800] text-2xl leading-none font-mono">
                   &ldquo;
                 </p>
-                <p className="text-[#94a3b8] text-sm leading-relaxed flex-1">
+                <p className="text-[var(--text-muted)] text-sm leading-relaxed flex-1">
                   {item.message}
                 </p>
                 <div className="flex items-end justify-between gap-3 pt-2 border-t border-[#1e3a5f]">
@@ -197,7 +197,7 @@ export default function Testimonials() {
                       {item.name}
                     </span>
                     {item.role && (
-                      <span className="text-[#94a3b8] text-xs">
+                      <span className="text-[var(--text-muted)] text-xs">
                         {item.role}
                       </span>
                     )}
@@ -208,7 +208,7 @@ export default function Testimonials() {
                         href={item.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#94a3b8] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
+                        className="text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
                       >
                         LinkedIn ↗
                       </a>
@@ -218,7 +218,7 @@ export default function Testimonials() {
                         href={item.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#94a3b8] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
+                        className="text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
                       >
                         GitHub ↗
                       </a>
@@ -228,7 +228,7 @@ export default function Testimonials() {
                         href={item.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#94a3b8] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
+                        className="text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
                       >
                         Web ↗
                       </a>
@@ -245,7 +245,7 @@ export default function Testimonials() {
           <div className="flex justify-center -mt-2">
             <button
               onClick={() => setExpanded((v) => !v)}
-              className="text-[#94a3b8] text-xs font-mono tracking-widest border border-[#1e3a5f] rounded-lg px-5 py-2.5 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
+              className="text-[var(--text-muted)] text-xs font-mono tracking-widest border border-[#1e3a5f] rounded-lg px-5 py-2.5 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
             >
               {expanded ? t.testimonials.showLess : t.testimonials.showMore}
             </button>
@@ -254,7 +254,7 @@ export default function Testimonials() {
 
         {/* Estado vacío */}
         {!loading && items.length === 0 && (
-          <p className="text-[#94a3b8] text-sm font-mono text-center py-6">
+          <p className="text-[var(--text-muted)] text-sm font-mono text-center py-6">
             {t.testimonials.empty}
           </p>
         )}
@@ -304,7 +304,7 @@ export default function Testimonials() {
                   <h3 className="text-[#e2f0ff] font-bold text-lg">
                     {t.testimonials.form.title}
                   </h3>
-                  <p className="text-[#94a3b8] text-xs leading-relaxed">
+                  <p className="text-[var(--text-muted)] text-xs leading-relaxed">
                     {t.testimonials.form.intro}
                   </p>
                 </div>
@@ -368,7 +368,7 @@ export default function Testimonials() {
                   </label>
 
                   <label className="flex flex-col gap-1.5">
-                    <span className="text-[#94a3b8] text-xs font-mono tracking-widest">
+                    <span className="text-[var(--text-muted)] text-xs font-mono tracking-widest">
                       {t.testimonials.form.linkedin}
                     </span>
                     <input
@@ -382,7 +382,7 @@ export default function Testimonials() {
                   </label>
 
                   <label className="flex flex-col gap-1.5">
-                    <span className="text-[#94a3b8] text-xs font-mono tracking-widest">
+                    <span className="text-[var(--text-muted)] text-xs font-mono tracking-widest">
                       {t.testimonials.form.github}
                     </span>
                     <input
@@ -396,7 +396,7 @@ export default function Testimonials() {
                   </label>
 
                   <label className="flex flex-col gap-1.5">
-                    <span className="text-[#94a3b8] text-xs font-mono tracking-widest">
+                    <span className="text-[var(--text-muted)] text-xs font-mono tracking-widest">
                       {t.testimonials.form.website}
                     </span>
                     <input
@@ -417,7 +417,7 @@ export default function Testimonials() {
                     <button
                       type="button"
                       onClick={closeModal}
-                      className="text-[#94a3b8] text-xs font-mono tracking-widest border border-[#1e3a5f] rounded-lg px-4 py-2.5 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
+                      className="text-[var(--text-muted)] text-xs font-mono tracking-widest border border-[#1e3a5f] rounded-lg px-4 py-2.5 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
                     >
                       {t.testimonials.form.cancel}
                     </button>

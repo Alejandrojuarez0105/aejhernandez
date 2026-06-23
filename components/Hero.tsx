@@ -42,7 +42,7 @@ export default function Hero() {
         <TypingTerminal />
 
         {/* Tagline */}
-        <p className="text-[#94a3b8] text-sm text-center leading-relaxed max-w-md">
+        <p className="text-[var(--text-muted)] text-sm text-center leading-relaxed max-w-md">
           {t.hero.tagline1}
           <br />
           {t.hero.tagline2}
@@ -69,7 +69,7 @@ export default function Hero() {
           {t.hero.stats.map(({ num, lbl }) => (
             <div key={lbl} className="text-center">
               <p className="text-xl font-bold text-[#ff8800]">{num}</p>
-              <p className="text-[#94a3b8] text-xs mt-1 tracking-widest">
+              <p className="text-[var(--text-muted)] text-xs mt-1 tracking-widest">
                 {lbl}
               </p>
             </div>

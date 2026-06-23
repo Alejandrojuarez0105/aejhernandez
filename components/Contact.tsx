@@ -7,7 +7,7 @@ import TypingCode, { type Line } from "@/components/TypingCode";
 // Colores de sintaxis
 const O = "text-[#ff8800]"; // naranja (palabras clave, símbolos)
 const W = "text-[#e2f0ff]"; // claro (valores)
-const G = "text-[#94a3b8]"; // gris (comentarios)
+const G = "text-[var(--text-muted)]"; // gris (comentarios)
 const C = "text-[#7dd3fc]"; // cyan (claves)
 
 export default function Contact() {
@@ -103,7 +103,7 @@ export default function Contact() {
             <br />
             <span className="text-[#ff8800]">{t.contact.title2}</span>
           </h2>
-          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
+          <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg mt-1">
             {t.contact.subtitle}
           </p>
         </div>
@@ -132,7 +132,7 @@ export default function Contact() {
                   <span className="text-[#e2f0ff] text-sm font-bold">
                     {l.handle}
                   </span>
-                  <span className="text-[#94a3b8] text-xs">{l.desc}</span>
+                  <span className="text-[var(--text-muted)] text-xs">{l.desc}</span>
                 </div>
                 <span className="text-[#1e3a5f] group-hover:text-[#ff8800] transition-colors text-lg">
                   ↗
@@ -152,7 +152,7 @@ export default function Contact() {
                 <span className="text-[#e2f0ff] text-sm font-bold">
                   {t.contact.quickTitle}
                 </span>
-                <span className="text-[#94a3b8] text-xs">
+                <span className="text-[var(--text-muted)] text-xs">
                   aejhernandezdev@gmail.com
                 </span>
               </div>
@@ -165,7 +165,7 @@ export default function Contact() {
 
         {/* Footer */}
         <div className="flex flex-col items-center gap-3 pt-8 border-t border-[#1e3a5f]">
-          <p className="text-[#94a3b8] text-xs font-mono tracking-widest">
+          <p className="text-[var(--text-muted)] text-xs font-mono tracking-widest">
             {t.contact.footerBuilt}
           </p>
           <p className="text-[#64748b] text-xs font-mono">

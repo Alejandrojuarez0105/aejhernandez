@@ -38,7 +38,7 @@ const projectMeta = [
 const statusColors: Record<string, string> = {
   done: 'text-[#22c55e] border-[#22c55e]',
   wip: 'text-[#ff8800] border-[#ff8800]',
-  soon: 'text-[#94a3b8] border-[#475569]',
+  soon: 'text-[var(--text-muted)] border-[#475569]',
 }
 
 export default function Projects() {
@@ -81,7 +81,7 @@ export default function Projects() {
         <div className="flex flex-col gap-2">
           <span className="text-[#ff8800] text-xs tracking-widest font-mono">{t.projects.kicker}</span>
           <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">{t.projects.title}</h2>
-          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
+          <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg mt-1">
             {t.projects.subtitle}
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function Projects() {
                   </div>
                   <h3 className="text-[#e2f0ff] font-bold text-lg mt-1">{p.name}</h3>
                   {p.role && (
-                    <span className="text-[#94a3b8] text-xs font-mono tracking-widest">// {p.role}</span>
+                    <span className="text-[var(--text-muted)] text-xs font-mono tracking-widest">// {p.role}</span>
                   )}
                 </div>
 
@@ -125,7 +125,7 @@ export default function Projects() {
                       href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#94a3b8] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-3 py-1.5 rounded-lg"
+                      className="text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-3 py-1.5 rounded-lg"
                     >
                       GitHub ↗
                     </a>
@@ -144,7 +144,7 @@ export default function Projects() {
               </div>
 
               {/* Descripción */}
-              <p className="text-[#94a3b8] text-xs leading-relaxed flex-1">{p.desc}</p>
+              <p className="text-[var(--text-muted)] text-xs leading-relaxed flex-1">{p.desc}</p>
 
               {/* Tags */}
               {p.tags.length > 0 && (
@@ -179,7 +179,7 @@ export default function Projects() {
             href="https://github.com/Alejandrojuarez0105?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-[#94a3b8] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-6 py-3 rounded-xl"
+            className="flex items-center gap-2 text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-6 py-3 rounded-xl"
           >
             {t.projects.viewAll}
           </a>

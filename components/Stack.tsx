@@ -7,7 +7,7 @@ import TypingCode, { type Line } from "@/components/TypingCode";
 // Colores de sintaxis
 const O = "text-[#ff8800]"; // naranja (palabras clave, símbolos)
 const W = "text-[#e2f0ff]"; // claro (valores)
-const G = "text-[#94a3b8]"; // gris (comentarios)
+const G = "text-[var(--text-muted)]"; // gris (comentarios)
 const C = "text-[#7dd3fc]"; // cyan (claves)
 const GR = "text-[#a3e635]"; // verde (valores de categoría)
 
@@ -148,7 +148,7 @@ export default function Stack() {
           <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">
             {t.stack.title}
           </h2>
-          <p className="text-[#94a3b8] text-sm leading-relaxed max-w-lg mt-1">
+          <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg mt-1">
             {t.stack.subtitle}
           </p>
         </div>
