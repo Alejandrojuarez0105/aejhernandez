@@ -90,30 +90,47 @@ export default function About() {
           <span className="text-[#ff8800] text-xs tracking-widest font-mono mb-2">
             {t.about.timelineKicker}
           </span>
-          <div className="flex flex-col gap-0">
-            {timeline.map((item, i) => (
-              <div key={item.year} className="flex gap-6 group">
-                {/* Línea vertical */}
-                <div className="flex flex-col items-center">
-                  <div className="w-3 h-3 rounded-full border-2 border-[#ff8800] bg-[#020d18] mt-1 group-hover:bg-[#ff8800] transition-colors" />
-                  {i < timeline.length - 1 && (
-                    <div className="w-px flex-1 bg-[#1e3a5f] my-1" />
-                  )}
+          <div className="relative flex flex-col gap-0">
+            {/* Línea de la trayectoria: a la izquierda en móvil, centrada en lg */}
+            <span
+              aria-hidden
+              className="absolute top-1 bottom-2 left-1.5 lg:left-1/2 w-px -translate-x-1/2 bg-[#1e3a5f]"
+            />
+            {timeline.map((item, i) => {
+              // En pantalla grande, los años pares van a la izquierda y los
+              // impares a la derecha (efecto zig-zag a ambos lados de la línea).
+              const left = i % 2 === 0;
+              return (
+                <div
+                  key={item.year}
+                  className="relative group pb-8 last:pb-0 pl-8 lg:pl-0 lg:grid lg:grid-cols-2 lg:gap-x-12"
+                >
+                  {/* Punto sobre la línea */}
+                  <span
+                    aria-hidden
+                    className="absolute top-1 left-1.5 lg:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-[#ff8800] bg-[#020d18] group-hover:bg-[#ff8800] transition-colors z-10"
+                  />
+                  {/* Contenido (alterna de lado en lg) */}
+                  <div
+                    className={
+                      left
+                        ? "lg:col-start-1 lg:text-right"
+                        : "lg:col-start-2"
+                    }
+                  >
+                    <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                      {item.year}
+                    </span>
+                    <p className="text-[#e2f0ff] text-sm font-bold mt-0.5">
+                      {item.title}
+                    </p>
+                    <p className="text-[var(--text-muted)] text-xs leading-relaxed mt-1 max-w-md lg:max-w-none">
+                      {item.desc}
+                    </p>
+                  </div>
                 </div>
-                {/* Contenido */}
-                <div className="pb-8">
-                  <span className="text-[#ff8800] text-xs font-mono tracking-widest">
-                    {item.year}
-                  </span>
-                  <p className="text-[#e2f0ff] text-sm font-bold mt-0.5">
-                    {item.title}
-                  </p>
-                  <p className="text-[var(--text-muted)] text-xs leading-relaxed mt-1 max-w-md">
-                    {item.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </div>
