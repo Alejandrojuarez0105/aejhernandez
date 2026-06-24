@@ -36,8 +36,8 @@ const projectMeta = [
 ]
 
 const statusColors: Record<string, string> = {
-  done: 'text-[#22c55e] border-[#22c55e]',
-  wip: 'text-[#ff8800] border-[#ff8800]',
+  done: 'text-[var(--ok)] border-[var(--ok)]',
+  wip: 'text-[var(--accent-text)] border-[var(--accent)]',
   soon: 'text-[var(--text-muted)] border-[#475569]',
 }
 
@@ -79,8 +79,8 @@ export default function Projects() {
 
         {/* Encabezado */}
         <div className="flex flex-col gap-2">
-          <span className="text-[#ff8800] text-xs tracking-widest font-mono">{t.projects.kicker}</span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">{t.projects.title}</h2>
+          <span className="text-[var(--accent-text)] text-xs tracking-widest font-mono">{t.projects.kicker}</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)]">{t.projects.title}</h2>
           <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg mt-1">
             {t.projects.subtitle}
           </p>
@@ -91,10 +91,10 @@ export default function Projects() {
           {projects.map((p) => (
             <div
               key={p.name}
-              className={`bg-[#0d1525] border rounded-xl p-6 flex flex-col gap-4 transition-colors duration-300 group
+              className={`bg-[var(--bg-card)] border rounded-xl p-6 flex flex-col gap-4 transition-colors duration-300 group
                 ${p.highlight
-                  ? 'border-[#ff8800]'
-                  : 'border-[#1e3a5f] hover:border-[#ff8800]'
+                  ? 'border-[var(--accent)]'
+                  : 'border-[var(--border)] hover:border-[var(--accent)]'
                 }
                 ${!p.role ? 'opacity-50 hover:opacity-70' : ''}
               `}
@@ -104,7 +104,7 @@ export default function Projects() {
                 <div className="flex flex-col gap-1">
                   <div className="flex items-center gap-2 flex-wrap">
                     {p.highlight && (
-                      <span className="text-[10px] bg-[#ff8800] text-[#020d18] font-bold px-2 py-0.5 rounded font-mono tracking-widest">
+                      <span className="text-[10px] bg-[var(--accent)] text-[var(--on-accent)] font-bold px-2 py-0.5 rounded font-mono tracking-widest">
                         {t.projects.highlight}
                       </span>
                     )}
@@ -112,7 +112,7 @@ export default function Projects() {
                       {p.status}
                     </span>
                   </div>
-                  <h3 className="text-[#e2f0ff] font-bold text-lg mt-1">{p.name}</h3>
+                  <h3 className="text-[var(--text)] font-bold text-lg mt-1">{p.name}</h3>
                   {p.role && (
                     <span className="text-[var(--text-muted)] text-xs font-mono tracking-widest">// {p.role}</span>
                   )}
@@ -125,7 +125,7 @@ export default function Projects() {
                       href={p.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-3 py-1.5 rounded-lg"
+                      className="text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors text-xs font-mono border border-[var(--border)] hover:border-[var(--accent)] px-3 py-1.5 rounded-lg"
                     >
                       GitHub ↗
                     </a>
@@ -135,7 +135,7 @@ export default function Projects() {
                       href={p.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="text-[#020d18] bg-[#ff8800] hover:bg-[#ffaa33] transition-colors text-xs font-mono px-3 py-1.5 rounded-lg font-bold"
+                      className="text-[var(--on-accent)] bg-[var(--accent)] hover:bg-[#ffaa33] transition-colors text-xs font-mono px-3 py-1.5 rounded-lg font-bold"
                     >
                       Demo ↗
                     </a>
@@ -148,11 +148,11 @@ export default function Projects() {
 
               {/* Tags */}
               {p.tags.length > 0 && (
-                <div className="flex flex-wrap gap-2 pt-2 border-t border-[#1e3a5f]">
+                <div className="flex flex-wrap gap-2 pt-2 border-t border-[var(--border)]">
                   {p.tags.map(tag => (
                     <span
                       key={tag}
-                      className="text-[#7dd3fc] text-[10px] font-mono bg-[#020d18] border border-[#1e3a5f] px-2 py-1 rounded"
+                      className="text-[var(--pill)] text-[10px] font-mono bg-[var(--bg-base)] border border-[var(--border)] px-2 py-1 rounded"
                     >
                       {tag}
                     </span>
@@ -164,7 +164,7 @@ export default function Projects() {
               {!p.role && (
                 <a
                   href="#contacto"
-                  className="text-[#ff8800] text-xs font-mono tracking-widest hover:underline mt-auto"
+                  className="text-[var(--accent-text)] text-xs font-mono tracking-widest hover:underline mt-auto"
                 >
                   {t.projects.talk}
                 </a>
@@ -179,7 +179,7 @@ export default function Projects() {
             href="https://github.com/Alejandrojuarez0105?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-xs font-mono border border-[#1e3a5f] hover:border-[#ff8800] px-6 py-3 rounded-xl"
+            className="flex items-center gap-2 text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors text-xs font-mono border border-[var(--border)] hover:border-[var(--accent)] px-6 py-3 rounded-xl"
           >
             {t.projects.viewAll}
           </a>

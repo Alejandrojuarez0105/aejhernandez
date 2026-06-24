@@ -188,10 +188,10 @@ export default function Testimonials() {
       <div className="w-full max-w-6xl flex flex-col gap-10">
         {/* Encabezado */}
         <div className="flex flex-col gap-2">
-          <span className="text-[#ff8800] text-xs tracking-widest font-mono">
+          <span className="text-[var(--accent-text)] text-xs tracking-widest font-mono">
             {t.testimonials.kicker}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)]">
             {t.testimonials.title}
           </h2>
           <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg mt-1">
@@ -205,17 +205,17 @@ export default function Testimonials() {
             {visibleItems.map((item, i) => (
               <div
                 key={i}
-                className="bg-[#0d1525] border border-[#1e3a5f] rounded-xl p-6 flex flex-col gap-4"
+                className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-6 flex flex-col gap-4"
               >
-                <p className="text-[#ff8800] text-2xl leading-none font-mono">
+                <p className="text-[var(--accent-text)] text-2xl leading-none font-mono">
                   &ldquo;
                 </p>
                 <p className="text-[var(--text-muted)] text-sm leading-relaxed flex-1">
                   {item.message}
                 </p>
-                <div className="flex items-end justify-between gap-3 pt-2 border-t border-[#1e3a5f]">
+                <div className="flex items-end justify-between gap-3 pt-2 border-t border-[var(--border)]">
                   <div className="flex flex-col">
-                    <span className="text-[#e2f0ff] text-sm font-bold">
+                    <span className="text-[var(--text)] text-sm font-bold">
                       {item.name}
                     </span>
                     {item.role && (
@@ -230,7 +230,7 @@ export default function Testimonials() {
                         href={item.linkedin}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
+                        className="text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors text-[10px] font-mono"
                       >
                         LinkedIn ↗
                       </a>
@@ -240,7 +240,7 @@ export default function Testimonials() {
                         href={item.github}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
+                        className="text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors text-[10px] font-mono"
                       >
                         GitHub ↗
                       </a>
@@ -250,7 +250,7 @@ export default function Testimonials() {
                         href={item.website}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[var(--text-muted)] hover:text-[#ff8800] transition-colors text-[10px] font-mono"
+                        className="text-[var(--text-muted)] hover:text-[var(--accent-text)] transition-colors text-[10px] font-mono"
                       >
                         Web ↗
                       </a>
@@ -267,7 +267,7 @@ export default function Testimonials() {
           <div className="flex justify-center -mt-2 print:hidden">
             <button
               onClick={() => setExpanded((v) => !v)}
-              className="text-[var(--text-muted)] text-xs font-mono tracking-widest border border-[#1e3a5f] rounded-lg px-5 py-2.5 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
+              className="text-[var(--text-muted)] text-xs font-mono tracking-widest border border-[var(--border)] rounded-lg px-5 py-2.5 hover:border-[var(--accent)] hover:text-[var(--accent-text)] transition-colors"
             >
               {expanded ? t.testimonials.showLess : t.testimonials.showMore}
             </button>
@@ -285,7 +285,7 @@ export default function Testimonials() {
         <div className="flex justify-center print:hidden">
           <button
             onClick={() => setOpen(true)}
-            className="bg-[#ff8800] text-[#020d18] font-bold px-8 py-3.5 rounded-xl text-sm tracking-wide flex items-center gap-2 shadow-lg hover:scale-105 hover:shadow-[0_0_20px_#ff8800] transition-all duration-300"
+            className="bg-[var(--accent)] text-[var(--on-accent)] font-bold px-8 py-3.5 rounded-xl text-sm tracking-wide flex items-center gap-2 shadow-lg hover:scale-105 hover:shadow-[0_0_20px_#ff8800] transition-all duration-300"
           >
             {t.testimonials.leaveButton} →
           </button>
@@ -304,18 +304,18 @@ export default function Testimonials() {
           aria-label={t.testimonials.form.title}
         >
           <div
-            className="w-full max-w-md bg-[#0d1525] border border-[#1e3a5f] rounded-xl p-6 flex flex-col gap-4 max-h-[90vh] overflow-y-auto"
+            className="w-full max-w-md bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-6 flex flex-col gap-4 max-h-[90vh] overflow-y-auto"
             onClick={(e) => e.stopPropagation()}
           >
             {status === "success" ? (
               <div className="flex flex-col items-center gap-4 py-6 text-center">
                 <span className="text-4xl">✓</span>
-                <p className="text-[#e2f0ff] text-sm leading-relaxed">
+                <p className="text-[var(--text)] text-sm leading-relaxed">
                   {t.testimonials.form.success}
                 </p>
                 <button
                   onClick={closeModal}
-                  className="text-[#ff8800] text-xs font-mono tracking-widest hover:underline mt-2"
+                  className="text-[var(--accent-text)] text-xs font-mono tracking-widest hover:underline mt-2"
                 >
                   {t.testimonials.form.cancel}
                 </button>
@@ -323,7 +323,7 @@ export default function Testimonials() {
             ) : (
               <>
                 <div className="flex flex-col gap-1">
-                  <h3 className="text-[#e2f0ff] font-bold text-lg">
+                  <h3 className="text-[var(--text)] font-bold text-lg">
                     {t.testimonials.form.title}
                   </h3>
                   <p className="text-[var(--text-muted)] text-xs leading-relaxed">
@@ -345,7 +345,7 @@ export default function Testimonials() {
                   />
 
                   <label className="flex flex-col gap-1.5">
-                    <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                    <span className="text-[var(--accent-text)] text-xs font-mono tracking-widest">
                       {t.testimonials.form.name}
                     </span>
                     <input
@@ -355,12 +355,12 @@ export default function Testimonials() {
                       placeholder={t.testimonials.form.namePlaceholder}
                       required
                       maxLength={100}
-                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
+                      className="bg-[var(--bg-base)] border border-[var(--border)] rounded-lg px-3 py-2 text-[var(--text)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                     />
                   </label>
 
                   <label className="flex flex-col gap-1.5">
-                    <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                    <span className="text-[var(--accent-text)] text-xs font-mono tracking-widest">
                       {t.testimonials.form.role}
                     </span>
                     <input
@@ -370,12 +370,12 @@ export default function Testimonials() {
                       placeholder={t.testimonials.form.rolePlaceholder}
                       required
                       maxLength={100}
-                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
+                      className="bg-[var(--bg-base)] border border-[var(--border)] rounded-lg px-3 py-2 text-[var(--text)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                     />
                   </label>
 
                   <label className="flex flex-col gap-1.5">
-                    <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                    <span className="text-[var(--accent-text)] text-xs font-mono tracking-widest">
                       {t.testimonials.form.email}
                     </span>
                     <input
@@ -385,7 +385,7 @@ export default function Testimonials() {
                       placeholder={t.testimonials.form.emailPlaceholder}
                       required
                       maxLength={200}
-                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
+                      className="bg-[var(--bg-base)] border border-[var(--border)] rounded-lg px-3 py-2 text-[var(--text)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                     />
                     <span className="text-[var(--text-muted)] text-[11px] leading-snug">
                       {t.testimonials.form.emailNote}
@@ -393,7 +393,7 @@ export default function Testimonials() {
                   </label>
 
                   <label className="flex flex-col gap-1.5">
-                    <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                    <span className="text-[var(--accent-text)] text-xs font-mono tracking-widest">
                       {t.testimonials.form.message}
                     </span>
                     <textarea
@@ -403,7 +403,7 @@ export default function Testimonials() {
                       required
                       maxLength={1000}
                       rows={4}
-                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors resize-none"
+                      className="bg-[var(--bg-base)] border border-[var(--border)] rounded-lg px-3 py-2 text-[var(--text)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors resize-none"
                     />
                   </label>
 
@@ -417,7 +417,7 @@ export default function Testimonials() {
                       onChange={(e) => setLinkedin(e.target.value)}
                       placeholder={t.testimonials.form.linkedinPlaceholder}
                       maxLength={300}
-                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
+                      className="bg-[var(--bg-base)] border border-[var(--border)] rounded-lg px-3 py-2 text-[var(--text)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                     />
                   </label>
 
@@ -431,7 +431,7 @@ export default function Testimonials() {
                       onChange={(e) => setGithub(e.target.value)}
                       placeholder={t.testimonials.form.githubPlaceholder}
                       maxLength={300}
-                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
+                      className="bg-[var(--bg-base)] border border-[var(--border)] rounded-lg px-3 py-2 text-[var(--text)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                     />
                   </label>
 
@@ -445,7 +445,7 @@ export default function Testimonials() {
                       onChange={(e) => setWebsite(e.target.value)}
                       placeholder={t.testimonials.form.websitePlaceholder}
                       maxLength={300}
-                      className="bg-[#020d18] border border-[#1e3a5f] rounded-lg px-3 py-2 text-[#e2f0ff] text-sm focus:border-[#ff8800] focus:outline-none transition-colors"
+                      className="bg-[var(--bg-base)] border border-[var(--border)] rounded-lg px-3 py-2 text-[var(--text)] text-sm focus:border-[var(--accent)] focus:outline-none transition-colors"
                     />
                   </label>
 
@@ -457,14 +457,14 @@ export default function Testimonials() {
                     <button
                       type="button"
                       onClick={closeModal}
-                      className="text-[var(--text-muted)] text-xs font-mono tracking-widest border border-[#1e3a5f] rounded-lg px-4 py-2.5 hover:border-[#ff8800] hover:text-[#ff8800] transition-colors"
+                      className="text-[var(--text-muted)] text-xs font-mono tracking-widest border border-[var(--border)] rounded-lg px-4 py-2.5 hover:border-[var(--accent)] hover:text-[var(--accent-text)] transition-colors"
                     >
                       {t.testimonials.form.cancel}
                     </button>
                     <button
                       type="submit"
                       disabled={status === "sending"}
-                      className="bg-[#ff8800] text-[#020d18] font-bold text-xs font-mono tracking-widest rounded-lg px-5 py-2.5 hover:bg-[#ffaa33] transition-colors disabled:opacity-60"
+                      className="bg-[var(--accent)] text-[var(--on-accent)] font-bold text-xs font-mono tracking-widest rounded-lg px-5 py-2.5 hover:bg-[#ffaa33] transition-colors disabled:opacity-60"
                     >
                       {status === "sending"
                         ? t.testimonials.form.sending

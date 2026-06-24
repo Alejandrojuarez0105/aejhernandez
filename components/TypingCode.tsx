@@ -12,7 +12,7 @@ export type Line = Token[];
 const STEP = 2; // caracteres por tick
 
 const Cursor = () => (
-  <span className="inline-block w-2 h-3.5 bg-[#ff8800] ml-0.5 animate-pulse align-middle" />
+  <span className="inline-block w-2 h-3.5 bg-[var(--accent)] ml-0.5 animate-pulse align-middle" />
 );
 
 export default function TypingCode({
@@ -107,10 +107,10 @@ export default function TypingCode({
   return (
     <div
       ref={ref}
-      className="bg-[#060d18] border border-[#1e3a5f] rounded-xl overflow-hidden w-full print:hidden"
+      className="bg-[var(--bg-card-alt)] border border-[var(--border)] rounded-xl overflow-hidden w-full print:hidden"
     >
       {/* Barra superior */}
-      <div className="flex items-center gap-2 bg-[#0d1525] border-b border-[#1e3a5f] px-4 py-2.5">
+      <div className="flex items-center gap-2 bg-[var(--bg-card)] border-b border-[var(--border)] px-4 py-2.5">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />

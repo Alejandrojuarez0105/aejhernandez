@@ -32,10 +32,10 @@ export default function About() {
         <div className="flex flex-col lg:flex-row lg:items-center gap-8 lg:gap-12">
           {/* Encabezado */}
           <div className="flex flex-col gap-2">
-          <span className="text-[#ff8800] text-xs tracking-widest font-mono">
+          <span className="text-[var(--accent-text)] text-xs tracking-widest font-mono">
             {t.about.kicker}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)]">
             {t.about.title}
           </h2>
 
@@ -63,7 +63,7 @@ export default function About() {
               alt="Alejandro Emmanuel Juárez Hernández"
               width={320}
               height={320}
-              className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full object-cover border-2 border-[#1e3a5f]"
+              className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-full object-cover border-2 border-[var(--border)]"
             />
           </div>
         </div>
@@ -73,9 +73,9 @@ export default function About() {
           {stats.map(({ num, lbl }) => (
             <div
               key={lbl}
-              className="bg-[#0d1525] border border-[#1e3a5f] rounded-xl p-4 text-center"
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-4 text-center"
             >
-              <p className="text-2xl font-bold text-[#ff8800] font-mono">
+              <p className="text-2xl font-bold text-[var(--accent-text)] font-mono">
                 {num}
               </p>
               <p className="text-[var(--text-muted)] text-xs mt-1 tracking-widest">
@@ -87,14 +87,14 @@ export default function About() {
 
         {/* Timeline */}
         <div className="flex flex-col gap-2">
-          <span className="text-[#ff8800] text-xs tracking-widest font-mono mb-2">
+          <span className="text-[var(--accent-text)] text-xs tracking-widest font-mono mb-2">
             {t.about.timelineKicker}
           </span>
           <div className="relative flex flex-col gap-0">
             {/* Línea de la trayectoria: a la izquierda en móvil, centrada en lg */}
             <span
               aria-hidden
-              className="absolute top-1 bottom-2 left-1.5 lg:left-1/2 w-px -translate-x-1/2 bg-[#1e3a5f]"
+              className="absolute top-1 bottom-2 left-1.5 lg:left-1/2 w-px -translate-x-1/2 bg-[var(--border)]"
             />
             {timeline.map((item, i) => {
               // En pantalla grande, los años pares van a la izquierda y los
@@ -108,7 +108,7 @@ export default function About() {
                   {/* Punto sobre la línea */}
                   <span
                     aria-hidden
-                    className="absolute top-1 left-1.5 lg:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-[#ff8800] bg-[#020d18] group-hover:bg-[#ff8800] transition-colors z-10"
+                    className="absolute top-1 left-1.5 lg:left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-[var(--accent)] bg-[var(--bg-base)] group-hover:bg-[var(--accent)] transition-colors z-10"
                   />
                   {/* Contenido (alterna de lado en lg) */}
                   <div
@@ -118,10 +118,10 @@ export default function About() {
                         : "lg:col-start-2"
                     }
                   >
-                    <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                    <span className="text-[var(--accent-text)] text-xs font-mono tracking-widest">
                       {item.year}
                     </span>
-                    <p className="text-[#e2f0ff] text-sm font-bold mt-0.5">
+                    <p className="text-[var(--text)] text-sm font-bold mt-0.5">
                       {item.title}
                     </p>
                     <p className="text-[var(--text-muted)] text-xs leading-relaxed mt-1 max-w-md lg:max-w-none">

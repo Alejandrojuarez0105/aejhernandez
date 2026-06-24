@@ -22,19 +22,19 @@ export default function Hero() {
         className={`w-full max-w-5xl flex flex-col items-center gap-6 md:gap-7 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
       >
         {/* Badge disponible */}
-        <div className="flex items-center gap-2 bg-[#0d1525] border border-[#1e3a5f] rounded-full px-4 py-1.5 text-[#ff8800] text-xs tracking-widest">
-          <span className="w-2 h-2 rounded-full bg-[#ff8800] animate-pulse" />
+        <div className="flex items-center gap-2 bg-[var(--bg-card)] border border-[var(--border)] rounded-full px-4 py-1.5 text-[var(--accent-text)] text-xs tracking-widest">
+          <span className="w-2 h-2 rounded-full bg-[var(--accent)] animate-pulse" />
           {t.hero.available}
         </div>
 
         {/* Nombre */}
-        <h1 className="text-4xl md:text-5xl font-bold text-[#e2f0ff] text-center leading-tight">
+        <h1 className="text-4xl md:text-5xl font-bold text-[var(--text)] text-center leading-tight">
           Alejandro Emmanuel
           <br />
-          <span className="text-[#ff8800]">Juárez Hernández</span>
+          <span className="text-[var(--accent-text)]">Juárez Hernández</span>
         </h1>
 
-        <p className="text-[#ff8800] text-sm tracking-widest">
+        <p className="text-[var(--accent-text)] text-sm tracking-widest">
           {t.hero.role}
         </p>
 
@@ -54,23 +54,23 @@ export default function Hero() {
         <div className="flex gap-5 flex-wrap justify-center mt-2 print:hidden">
           <a
             href="#contacto"
-            className="bg-[#ff8800] text-[#020d18] font-bold px-10 py-4 rounded-xl text-sm tracking-wide flex items-center justify-center min-w-[180px] shadow-lg hover:scale-105 hover:shadow-[0_0_20px_#ff8800] transition-all duration-300"
+            className="bg-[var(--accent)] text-[var(--on-accent)] font-bold px-10 py-4 rounded-xl text-sm tracking-wide flex items-center justify-center min-w-[180px] shadow-lg hover:scale-105 hover:shadow-[0_0_20px_#ff8800] transition-all duration-300"
           >
             {t.hero.ctaContact}
           </a>
           <a
             href="#proyectos"
-            className="text-[#ff8800] border border-[#1e3a5f] px-10 py-4 rounded-xl text-sm tracking-wide flex items-center justify-center min-w-[180px] hover:border-[#ff8800] hover:scale-105 transition-all duration-300"
+            className="text-[var(--accent-text)] border border-[var(--border)] px-10 py-4 rounded-xl text-sm tracking-wide flex items-center justify-center min-w-[180px] hover:border-[var(--accent)] hover:scale-105 transition-all duration-300"
           >
             {t.hero.ctaProjects}
           </a>
         </div>
 
         {/* Stats */}
-        <div className="flex gap-8 flex-wrap justify-center pt-6 border-t border-[#1e3a5f] w-full">
+        <div className="flex gap-8 flex-wrap justify-center pt-6 border-t border-[var(--border)] w-full">
           {t.hero.stats.map(({ num, lbl }) => (
             <div key={lbl} className="text-center">
-              <p className="text-xl font-bold text-[#ff8800]">{num}</p>
+              <p className="text-xl font-bold text-[var(--accent-text)]">{num}</p>
               <p className="text-[var(--text-muted)] text-xs mt-1 tracking-widest">
                 {lbl}
               </p>

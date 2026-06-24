@@ -1,10 +1,44 @@
 @import "tailwindcss";
 
+/* ─── Tokens de tema ───────────────────────────────────────────────────────
+   :root = tema OSCURO (default, identidad terminal). El tema CLARO se aplica
+   con [data-theme="light"] en <html> (lo pone theme-context + el script
+   anti-parpadeo de layout.tsx). Los componentes usan estas variables vía
+   utilidades arbitrarias de Tailwind: bg-[var(--bg-base)], text-[var(--text)]…
+   Roles dobles separados a propósito:
+     --accent      → naranja para FONDOS y BORDES (igual en ambos temas).
+     --accent-text → naranja para TEXTO (se oscurece en claro por contraste).
+     --on-accent   → texto sobre botones naranjas (oscuro en AMBOS temas). */
 :root {
-  /* Texto atenuado (comentarios, descripciones, metadatos). Más claro que el
-     slate-400 original (#94a3b8) para mejorar el contraste sobre el fondo
-     oscuro. Se reasignará al implementar el modo claro. */
+  --bg-base: #020d18;
+  --bg-card: #0d1525;
+  --bg-card-alt: #060d18;
+  --border: #1e3a5f;
+  --text: #e2f0ff;
   --text-muted: #c2cfe0;
+  --accent: #ff8800;
+  --accent-text: #ff8800;
+  --pill: #7dd3fc;
+  --on-accent: #020d18;
+  /* Sintaxis/estados que en oscuro son vivos y en claro deben oscurecerse
+     para seguir legibles sobre fondo claro */
+  --syntax-str: #a3e635; /* valores string en el "código" (verde lima) */
+  --ok: #22c55e; /* estado "completado" (verde) */
+}
+
+:root[data-theme="light"] {
+  --bg-base: #f6f8fc;
+  --bg-card: #ffffff;
+  --bg-card-alt: #eef2f8;
+  --border: #d4deeb;
+  --text: #0e1b2b;
+  --text-muted: #51607a;
+  --accent: #ff8800;
+  --accent-text: #c75a06;
+  --pill: #0369a1;
+  --on-accent: #020d18;
+  --syntax-str: #4d7c0f; /* lima-700: legible sobre el terminal claro */
+  --ok: #15803d; /* verde-700 */
 }
 
 /* El reset va dentro de @layer base para NO pisar las utilidades de Tailwind
@@ -24,7 +58,7 @@ html {
 }
 
 body {
-  background-color: #020d18;
+  background-color: var(--bg-base);
   /* Capas de profundidad: brillo cálido arriba, frío a la derecha y rejilla sutil */
   background-image:
     radial-gradient(
@@ -45,14 +79,36 @@ body {
     44px 44px,
     44px 44px;
   background-attachment: fixed;
-  color: #e2f0ff;
+  color: var(--text);
   font-family: monospace;
   -webkit-font-smoothing: antialiased;
+  /* Transición suave al alternar tema (el contenido individual hereda) */
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* En claro las luces oscuras quedarían como manchas grises: rejilla más tenue
+   y un brillo naranja/cian apenas perceptible sobre el fondo claro. */
+:root[data-theme="light"] body {
+  background-image:
+    radial-gradient(
+      900px circle at 50% -10%,
+      rgba(255, 136, 0, 0.07),
+      transparent 60%
+    ),
+    radial-gradient(
+      700px circle at 100% 15%,
+      rgba(3, 105, 161, 0.05),
+      transparent 55%
+    ),
+    linear-gradient(rgba(100, 130, 170, 0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(100, 130, 170, 0.07) 1px, transparent 1px);
 }
 
 ::selection {
-  background: #ff8800;
-  color: #020d18;
+  background: var(--accent);
+  color: var(--on-accent);
 }
 
 /* Respeta a quien prefiere menos movimiento */
@@ -97,8 +153,10 @@ body {
     transition: none !important;
   }
 
-  /* Conserva un acento naranja (más oscuro) en etiquetas, años y roles */
-  [class*="#ff8800"] {
+  /* Conserva un acento naranja (más oscuro) en etiquetas, años y roles.
+     Las clases naranjas de texto ahora son text-[var(--accent-text)]. */
+  [class*="accent-text"],
+  [class*="accent)"] {
     color: #c2410c !important;
   }
 

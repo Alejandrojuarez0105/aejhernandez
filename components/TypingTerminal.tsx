@@ -4,8 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { useLanguage } from "@/lib/language-context";
 
 // Colores de sintaxis
-const O = "text-[#ff8800]"; // naranja (palabras clave, símbolos)
-const W = "text-[#e2f0ff]"; // claro (valores)
+const O = "text-[var(--accent-text)]"; // naranja (palabras clave, símbolos)
+const W = "text-[var(--text)]"; // claro (valores)
 
 // Construye las líneas (la etiqueta de herramientas/análisis y los items de
 // análisis cambian según el idioma)
@@ -68,7 +68,7 @@ const DURATION = 5000; // duración total objetivo (ms)
 const STEP = 2; // caracteres por tick
 
 const Cursor = () => (
-  <span className="inline-block w-2 h-3.5 bg-[#ff8800] ml-0.5 animate-pulse align-middle" />
+  <span className="inline-block w-2 h-3.5 bg-[var(--accent)] ml-0.5 animate-pulse align-middle" />
 );
 
 export default function TypingTerminal() {
@@ -142,9 +142,9 @@ export default function TypingTerminal() {
   let acc = 0;
 
   return (
-    <div className="w-full bg-[#060d18] border border-[#1e3a5f] rounded-xl overflow-hidden print:hidden">
+    <div className="w-full bg-[var(--bg-card-alt)] border border-[var(--border)] rounded-xl overflow-hidden print:hidden">
       {/* Barra superior */}
-      <div className="flex items-center gap-2 bg-[#0d1525] border-b border-[#1e3a5f] px-4 py-2.5">
+      <div className="flex items-center gap-2 bg-[var(--bg-card)] border-b border-[var(--border)] px-4 py-2.5">
         <span className="w-2.5 h-2.5 rounded-full bg-[#ff5f57]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#febc2e]" />
         <span className="w-2.5 h-2.5 rounded-full bg-[#28c840]" />

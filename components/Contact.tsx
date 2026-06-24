@@ -5,10 +5,10 @@ import { useLanguage } from "@/lib/language-context";
 import TypingCode, { type Line } from "@/components/TypingCode";
 
 // Colores de sintaxis
-const O = "text-[#ff8800]"; // naranja (palabras clave, símbolos)
-const W = "text-[#e2f0ff]"; // claro (valores)
+const O = "text-[var(--accent-text)]"; // naranja (palabras clave, símbolos)
+const W = "text-[var(--text)]"; // claro (valores)
 const G = "text-[var(--text-muted)]"; // gris (comentarios)
-const C = "text-[#7dd3fc]"; // cyan (claves)
+const C = "text-[var(--pill)]"; // cyan (claves)
 
 export default function Contact() {
   const { t } = useLanguage();
@@ -95,13 +95,13 @@ export default function Contact() {
       <div className="w-full max-w-5xl flex flex-col gap-12">
         {/* Encabezado */}
         <div className="flex flex-col gap-2">
-          <span className="text-[#ff8800] text-xs tracking-widest font-mono">
+          <span className="text-[var(--accent-text)] text-xs tracking-widest font-mono">
             {t.contact.kicker}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)]">
             {t.contact.title1}
             <br />
-            <span className="text-[#ff8800]">{t.contact.title2}</span>
+            <span className="text-[var(--accent-text)]">{t.contact.title2}</span>
           </h2>
           <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg mt-1">
             {t.contact.subtitle}
@@ -123,18 +123,18 @@ export default function Contact() {
                 href={l.url}
                 target={l.url.startsWith("http") ? "_blank" : "_self"}
                 rel="noopener noreferrer"
-                className="bg-[#0d1525] border border-[#1e3a5f] rounded-xl p-5 flex items-center justify-between gap-4 hover:border-[#ff8800] transition-colors duration-300 group"
+                className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-5 flex items-center justify-between gap-4 hover:border-[var(--accent)] transition-colors duration-300 group"
               >
                 <div className="flex flex-col gap-1">
-                  <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                  <span className="text-[var(--accent-text)] text-xs font-mono tracking-widest">
                     {l.label}
                   </span>
-                  <span className="text-[#e2f0ff] text-sm font-bold">
+                  <span className="text-[var(--text)] text-sm font-bold">
                     {l.handle}
                   </span>
                   <span className="text-[var(--text-muted)] text-xs">{l.desc}</span>
                 </div>
-                <span className="text-[#1e3a5f] group-hover:text-[#ff8800] transition-colors text-lg">
+                <span className="text-[var(--border)] group-hover:text-[var(--accent-text)] transition-colors text-lg">
                   ↗
                 </span>
               </a>
@@ -143,20 +143,20 @@ export default function Contact() {
             {/* Copiar email */}
             <button
               onClick={handleCopy}
-              className="bg-[#0d1525] border border-[#1e3a5f] rounded-xl p-5 flex items-center justify-between gap-4 hover:border-[#ff8800] transition-colors duration-300 group text-left w-full"
+              className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-5 flex items-center justify-between gap-4 hover:border-[var(--accent)] transition-colors duration-300 group text-left w-full"
             >
               <div className="flex flex-col gap-1">
-                <span className="text-[#ff8800] text-xs font-mono tracking-widest">
+                <span className="text-[var(--accent-text)] text-xs font-mono tracking-widest">
                   {t.contact.quickLabel}
                 </span>
-                <span className="text-[#e2f0ff] text-sm font-bold">
+                <span className="text-[var(--text)] text-sm font-bold">
                   {t.contact.quickTitle}
                 </span>
                 <span className="text-[var(--text-muted)] text-xs">
                   aejhernandezdev@gmail.com
                 </span>
               </div>
-              <span className="text-[#1e3a5f] group-hover:text-[#ff8800] transition-colors text-sm font-mono">
+              <span className="text-[var(--border)] group-hover:text-[var(--accent-text)] transition-colors text-sm font-mono">
                 {copied ? t.contact.copied : t.contact.copy}
               </span>
             </button>
@@ -164,7 +164,7 @@ export default function Contact() {
         </div>
 
         {/* Footer */}
-        <div className="flex flex-col items-center gap-3 pt-8 border-t border-[#1e3a5f]">
+        <div className="flex flex-col items-center gap-3 pt-8 border-t border-[var(--border)]">
           <p className="text-[var(--text-muted)] text-xs font-mono tracking-widest">
             {t.contact.footerBuilt}
           </p>

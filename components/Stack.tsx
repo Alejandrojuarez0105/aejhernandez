@@ -5,11 +5,11 @@ import { useLanguage } from "@/lib/language-context";
 import TypingCode, { type Line } from "@/components/TypingCode";
 
 // Colores de sintaxis
-const O = "text-[#ff8800]"; // naranja (palabras clave, símbolos)
-const W = "text-[#e2f0ff]"; // claro (valores)
+const O = "text-[var(--accent-text)]"; // naranja (palabras clave, símbolos)
+const W = "text-[var(--text)]"; // claro (valores)
 const G = "text-[var(--text-muted)]"; // gris (comentarios)
-const C = "text-[#7dd3fc]"; // cyan (claves)
-const GR = "text-[#a3e635]"; // verde (valores de categoría)
+const C = "text-[var(--pill)]"; // cyan (claves)
+const GR = "text-[var(--syntax-str)]"; // verde (valores de categoría)
 
 export default function Stack() {
   const { t } = useLanguage();
@@ -142,10 +142,10 @@ export default function Stack() {
       <div className="w-full max-w-5xl flex flex-col gap-10">
         {/* Encabezado */}
         <div className="flex flex-col gap-2">
-          <span className="text-[#ff8800] text-xs tracking-widest font-mono mb-2">
+          <span className="text-[var(--accent-text)] text-xs tracking-widest font-mono mb-2">
             {t.stack.kicker}
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-[#e2f0ff]">
+          <h2 className="text-3xl md:text-4xl font-bold text-[var(--text)]">
             {t.stack.title}
           </h2>
           <p className="text-[var(--text-muted)] text-sm leading-relaxed max-w-lg mt-1">
@@ -158,17 +158,17 @@ export default function Stack() {
           {stack.map(({ category, icon, items, wide }) => (
             <div
               key={category}
-              className={`bg-[#0d1525] border border-[#1e3a5f] rounded-xl p-6 flex flex-col gap-5 hover:border-[#ff8800] transition-colors duration-300 group items-center ${
+              className={`bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-6 flex flex-col gap-5 hover:border-[var(--accent)] transition-colors duration-300 group items-center ${
                 wide ? "md:col-span-2" : ""
               }`}
             >
               {/* Header de categoría */}
               <div className="flex items-center gap-3 justify-center">
-                <span className="text-[#ff8800] text-2xl">{icon}</span>
-                <span className="text-[#e2f0ff] text-lg md:text-xl font-bold tracking-widest">
+                <span className="text-[var(--accent-text)] text-2xl">{icon}</span>
+                <span className="text-[var(--text)] text-lg md:text-xl font-bold tracking-widest">
                   {category}
                 </span>
-                <span className="ml-2 text-[#1e3a5f] text-sm font-mono group-hover:text-[#ff8800] transition-colors">
+                <span className="ml-2 text-[var(--border)] text-sm font-mono group-hover:text-[var(--accent-text)] transition-colors">
                   {items.length}
                 </span>
               </div>
@@ -178,7 +178,7 @@ export default function Stack() {
                 {items.map((item) => (
                   <span
                     key={item}
-                    className="bg-[#020d18] border border-[#1e3a5f] text-[#7dd3fc] text-lg px-5 py-2 rounded-lg font-mono tracking-wide hover:border-[#ff8800] hover:text-[#ff8800] transition-colors cursor-default"
+                    className="bg-[var(--bg-base)] border border-[var(--border)] text-[var(--pill)] text-lg px-5 py-2 rounded-lg font-mono tracking-wide hover:border-[var(--accent)] hover:text-[var(--accent-text)] transition-colors cursor-default"
                   >
                     {item}
                   </span>

@@ -3,6 +3,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import BackToTop from "@/components/BackToTop";
 import { LanguageProvider } from "@/lib/language-context";
+import { ThemeProvider } from "@/lib/theme-context";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -90,17 +91,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    // suppressHydrationWarning: el script de abajo fija data-theme antes de
+    // hidratar, así que el atributo difiere del render del servidor (esperado).
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        {/* Anti-parpadeo: corre ANTES de pintar. Aplica el tema guardado o, en
+            la primera visita, el del sistema (prefers-color-scheme), evitando
+            el flash oscuro→claro. Debe ir en <head> y ser síncrono. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t!=='light'&&t!=='dark'){t=window.matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';}document.documentElement.dataset.theme=t;}catch(e){}})();`,
+          }}
+        />
+      </head>
       <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
         />
-        <LanguageProvider>
-          <Navbar />
-          {children}
-          <BackToTop />
-        </LanguageProvider>
+        <ThemeProvider>
+          <LanguageProvider>
+            <Navbar />
+            {children}
+            <BackToTop />
+          </LanguageProvider>
+        </ThemeProvider>
         <Analytics />
         <SpeedInsights />
       </body>
