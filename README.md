@@ -22,7 +22,7 @@
 
 Una **web personal de una sola página** que funciona a la vez como portafolio y como currículum interactivo. Presenta mi perfil, mi stack tecnológico, mis proyectos y testimonios reales, con una estética de **terminal/código** (ventanas que se "autoescriben", tipografía monoespaciada y acento naranja sobre fondo oscuro).
 
-Es **bilingüe (español / inglés)**, ofrece **tema claro y oscuro**, permite **descargar el CV** en el idioma activo y deja que cualquier visitante **deje un testimonio** mediante un flujo verificado por correo. Todo el contenido vive en el propio código (sin CMS), salvo los testimonios, que se almacenan en una base de datos.
+Es **bilingüe (español / inglés)**, ofrece **tema claro y oscuro**, permite **descargar el CV** en el idioma activo y deja que cualquier visitante **deje un testimonio** mediante un flujo verificado por correo.
 
 > En producción: **[aejhernandez.dev](https://aejhernandez.dev)**.
 
@@ -30,15 +30,15 @@ Es **bilingüe (español / inglés)**, ofrece **tema claro y oscuro**, permite *
 
 ## Características
 
-- 🧩 **Una sola página** compuesta por secciones: Inicio, Sobre mí (trayectoria en línea de tiempo), Stack, Proyectos, Testimonios y Contacto.
-- 🌐 **Bilingüe ES/EN** — toda la copia centralizada en `lib/i18n.ts`, con persistencia en `localStorage` y detección del idioma del navegador.
-- 🌗 **Tema claro / oscuro** — sistema de *tokens* en variables CSS; en la primera visita sigue la preferencia del sistema (`prefers-color-scheme`) y luego recuerda la elección, con script anti-parpadeo.
-- 💬 **Testimonios verificados** — los visitantes envían su testimonio y confirman su correo (*double opt-in* vía Resend) antes de que llegue a moderación; aprobación manual antes de publicarse.
-- 🛡️ **Anti-spam por capas** — *honeypot*, límite de envíos por IP y tope global de correos (Upstash Redis), y validación de longitudes en el servidor.
-- 🔎 **SEO** — favicon e imagen Open Graph generados dinámicamente (`next/og`), `sitemap.xml`, `robots.txt`, datos estructurados *Person* (JSON-LD) y *canonical*.
-- 📄 **Descarga de CV** en PDF según el idioma activo, con una hoja de estilos de **impresión** (`Ctrl+P`) optimizada.
-- 📈 **Analítica** con Vercel Analytics y Speed Insights.
-- ♿ **Accesibilidad y motion** — respeta `prefers-reduced-motion` y usa etiquetas `aria` en los controles.
+- **Una sola página** compuesta por secciones: Inicio, Sobre mí (trayectoria en línea de tiempo), Stack, Proyectos, Testimonios y Contacto.
+- **Bilingüe ES/EN** — toda la copia centralizada en `lib/i18n.ts`, con persistencia en `localStorage` y detección del idioma del navegador.
+- **Tema claro / oscuro** — sistema de *tokens* en variables CSS; en la primera visita sigue la preferencia del sistema (`prefers-color-scheme`) y luego recuerda la elección, con script anti-parpadeo.
+- **Testimonios verificados** — los visitantes envían su testimonio y confirman su correo (*double opt-in* vía Resend) antes de que llegue a moderación; aprobación manual antes de publicarse.
+- **Anti-spam por capas** — *honeypot*, límite de envíos por IP y tope global de correos (Upstash Redis), y validación de longitudes en el servidor.
+- **SEO** — favicon e imagen Open Graph generados dinámicamente (`next/og`), `sitemap.xml`, `robots.txt`, datos estructurados *Person* (JSON-LD) y *canonical*.
+- **Descarga de CV** en PDF según el idioma activo, con una hoja de estilos de **impresión** (`Ctrl+P`) optimizada.
+- **Analítica** con Vercel Analytics y Speed Insights.
+- **Accesibilidad y motion** — respeta `prefers-reduced-motion` y usa etiquetas `aria` en los controles.
 
 ---
 
