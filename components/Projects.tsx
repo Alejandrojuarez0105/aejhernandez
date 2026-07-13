@@ -20,7 +20,7 @@ const projectMeta = [
     highlight: false,
   },
   {
-    name: 'aehernandez.dev',
+    name: 'aejhernandez.dev',
     tags: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
     github: 'https://github.com/Alejandrojuarez0105/ajhernandez',
     demo: null,
