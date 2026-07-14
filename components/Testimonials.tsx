@@ -313,6 +313,9 @@ export default function Testimonials() {
                 <p className="text-[var(--text)] text-sm leading-relaxed">
                   {t.testimonials.form.success}
                 </p>
+                <p className="text-[var(--text-muted)] text-xs leading-relaxed -mt-2">
+                  {t.testimonials.form.successSpamNote}
+                </p>
                 <button
                   onClick={closeModal}
                   className="text-[var(--accent-text)] text-xs font-mono tracking-widest hover:underline mt-2"

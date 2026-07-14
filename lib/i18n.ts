@@ -192,6 +192,8 @@ export const translations = {
         cancel: "Cancelar",
         success:
           "¡Casi listo! Te enviamos un correo: haz clic en el enlace para confirmar tu testimonio.",
+        successSpamNote:
+          "(Es probable que el correo llegue a la carpeta de spam o promociones)",
         error: "Hubo un error al enviar. Inténtalo de nuevo.",
         rateLimited:
           "Has enviado demasiados testimonios. Espera unos minutos e inténtalo de nuevo.",
@@ -396,6 +398,8 @@ export const translations = {
         cancel: "Cancel",
         success:
           "Almost there! We've sent you an email: click the link to confirm your testimonial.",
+        successSpamNote:
+          "(It might land in your spam or promotions folder)",
         error: "There was an error sending it. Please try again.",
         rateLimited:
           "You've sent too many testimonials. Please wait a few minutes and try again.",
