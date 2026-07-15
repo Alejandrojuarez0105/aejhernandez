@@ -106,7 +106,7 @@ export default function Testimonials() {
     check();
     window.addEventListener("resize", check);
     return () => window.removeEventListener("resize", check);
-  }, [items, expandedCards]);
+  }, [items, expandedCards, expanded]);
 
   // Cierra el modal con Escape
   useEffect(() => {
