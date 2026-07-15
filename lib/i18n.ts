@@ -168,6 +168,8 @@ export const translations = {
       leaveButton: "Dejar testimonio",
       showMore: "Ver más testimonios",
       showLess: "Ver menos",
+      readMore: "Leer más",
+      readLess: "Leer menos",
       form: {
         title: "Dejar un testimonio",
         intro:
@@ -374,6 +376,8 @@ export const translations = {
       leaveButton: "Leave a testimonial",
       showMore: "Show more testimonials",
       showLess: "Show less",
+      readMore: "Read more",
+      readLess: "Read less",
       form: {
         title: "Leave a testimonial",
         intro:

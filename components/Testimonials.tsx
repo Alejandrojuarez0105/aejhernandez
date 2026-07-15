@@ -19,6 +19,22 @@ export default function Testimonials() {
   const [open, setOpen] = useState(false);
   const [mounted, setMounted] = useState(false); // para el portal (solo cliente)
 
+  // "Leer más" / "Leer menos" por tarjeta (mensajes truncados a 4 líneas)
+  const [expandedCards, setExpandedCards] = useState<Set<number>>(new Set());
+  const [overflowingCards, setOverflowingCards] = useState<Set<number>>(
+    new Set(),
+  );
+  const messageRefs = useRef<(HTMLParagraphElement | null)[]>([]);
+
+  const toggleCard = (i: number) => {
+    setExpandedCards((prev) => {
+      const next = new Set(prev);
+      if (next.has(i)) next.delete(i);
+      else next.add(i);
+      return next;
+    });
+  };
+
   // Estado del formulario
   const [name, setName] = useState("");
   const [role, setRole] = useState("");
@@ -70,6 +86,27 @@ export default function Testimonials() {
       active = false;
     };
   }, []);
+
+  // Detecta qué testimonios quedan recortados por el line-clamp de 4 líneas,
+  // para solo mostrar "Leer más" donde realmente hace falta.
+  useEffect(() => {
+    const check = () => {
+      const next = new Set<number>();
+      messageRefs.current.forEach((el, i) => {
+        if (!el) return;
+        // Si ya está expandida, confiamos en que se detectó antes (el propio
+        // botón no existiría si no hiciera falta) y no la volvemos a medir
+        // sin el clamp activo, porque ahí scrollHeight === clientHeight.
+        if (expandedCards.has(i) || el.scrollHeight - el.clientHeight > 2) {
+          next.add(i);
+        }
+      });
+      setOverflowingCards(next);
+    };
+    check();
+    window.addEventListener("resize", check);
+    return () => window.removeEventListener("resize", check);
+  }, [items, expandedCards]);
 
   // Cierra el modal con Escape
   useEffect(() => {
@@ -202,7 +239,10 @@ export default function Testimonials() {
         {/* Lista de testimonios */}
         {!loading && items.length > 0 && (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-start">
-            {visibleItems.map((item, i) => (
+            {visibleItems.map((item, i) => {
+              const isExpanded = expandedCards.has(i);
+              const isOverflowing = overflowingCards.has(i);
+              return (
               <div
                 key={i}
                 className="bg-[var(--bg-card)] border border-[var(--border)] rounded-xl p-6 flex flex-col gap-4"
@@ -210,10 +250,33 @@ export default function Testimonials() {
                 <p className="text-[var(--accent-text)] text-2xl leading-none font-mono">
                   &ldquo;
                 </p>
-                <p className="text-[var(--text-muted)] text-sm leading-relaxed flex-1">
-                  {item.message}
-                </p>
-                <div className="flex items-end justify-between gap-3 pt-2 border-t border-[var(--border)]">
+                <div
+                  className={`overflow-hidden transition-[max-height] duration-300 ease-in-out ${
+                    isExpanded ? "max-h-[1000px]" : "max-h-24"
+                  }`}
+                >
+                  <p
+                    ref={(el) => {
+                      messageRefs.current[i] = el;
+                    }}
+                    className={`text-[var(--text-muted)] text-sm leading-relaxed ${
+                      isExpanded ? "" : "line-clamp-4"
+                    }`}
+                  >
+                    {item.message}
+                  </p>
+                </div>
+                {isOverflowing && (
+                  <button
+                    onClick={() => toggleCard(i)}
+                    className="text-[var(--accent-text)] text-xs font-mono tracking-widest hover:underline self-start -mt-2"
+                  >
+                    {isExpanded
+                      ? t.testimonials.readLess
+                      : t.testimonials.readMore}
+                  </button>
+                )}
+                <div className="flex items-end justify-between gap-3 pt-2 border-t border-[var(--border)] mt-auto">
                   <div className="flex flex-col">
                     <span className="text-[var(--text)] text-sm font-bold">
                       {item.name}
@@ -258,7 +321,8 @@ export default function Testimonials() {
                   </div>
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         )}
 
